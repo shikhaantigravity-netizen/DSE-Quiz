@@ -26,8 +26,19 @@ class QuizModel(BaseModel):
 # --- Google Sheets Configuration ---
 # Set these in your online Streamlit Cloud "Secrets" panel!
 SPREADSHEET_NAME = os.getenv("SPREADSHEET_NAME", "DSE Results")
-SPREADSHEET_ID = os.getenv("SPREADSHEET_ID", "") # LEAVE EMPTY - Set in Secrets
+SPREADSHEET_ID_RAW = os.getenv("SPREADSHEET_ID", "") # LEAVE EMPTY - Set in Secrets
 CREDENTIALS_FILE = "google_credentials.json"
+
+def get_spreadsheet_id():
+    """Extracts the Spreadsheet ID from a URL or returns the ID as is."""
+    if not SPREADSHEET_ID_RAW:
+        return ""
+    if "/d/" in SPREADSHEET_ID_RAW:
+        # Extract from URL: https://docs.google.com/spreadsheets/d/ID_HERE/edit
+        return SPREADSHEET_ID_RAW.split("/d/")[1].split("/")[0]
+    return SPREADSHEET_ID_RAW.strip()
+
+SPREADSHEET_ID = get_spreadsheet_id()
 
 def get_gspread_client():
     """Authenticates and returns a gspread client with verbose error reporting."""
