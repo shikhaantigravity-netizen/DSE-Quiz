@@ -1,0 +1,126 @@
+{
+  "title": "Unit 4",
+  "access_code": "AXO9LL",
+  "questions": [
+    {
+      "question_text": "What is the primary function of the 'fillna' method in pandas?",
+      "code_snippet": null,
+      "options": [
+        "To fill missing values in a DataFrame",
+        "To create a new DataFrame",
+        "To delete rows with missing values",
+        "To merge two DataFrames"
+      ],
+      "explanation": "The 'fillna' method is used to fill missing values in a DataFrame. It can replace missing values with a specified value, such as a mean, median, or mode.",
+      "answer_hash": "f55b4c6209487cbc1806092fe293701ca8cdb4cd9bd9ff3b128f3121c3f75167"
+    },
+    {
+      "question_text": "What will be the output of the following code?",
+      "code_snippet": "import pandas as pd\nimport numpy as np\n\ndf = pd.DataFrame({'A': [1, 2, np.nan, 4]})\ndf = df.fillna(0)\nprint(df)",
+      "options": [
+        "```text\nA\n0    1.0\n1    2.0\n2    0.0\n3    4.0\n```",
+        "```text\nA\n0    1.0\n1    2.0\n2    1.0\n3    4.0\n```",
+        "```text\nA\n0    1.0\n1    2.0\n2    3.0\n3    4.0\n```",
+        "```text\nA\n0    1.0\n1    2.0\n2    0.0\n3    4.0\n```"
+      ],
+      "explanation": "The 'fillna' method replaces missing values with the specified value, in this case, 0.",
+      "answer_hash": "81bf62bba36909e21e45d0c30c2162c6e841bb1f21cd1a8fb2af910996726e4b"
+    },
+    {
+      "question_text": "What will happen if we use 'fillna' with an invalid value?",
+      "code_snippet": null,
+      "options": [
+        "It will raise a TypeError",
+        "It will raise a ValueError",
+        "It will fill the missing values with NaN",
+        "It will do nothing"
+      ],
+      "explanation": "If we use 'fillna' with an invalid value, such as a list or a dictionary, it will raise a TypeError because 'fillna' expects a single value or a dictionary with column names as keys.",
+      "answer_hash": "306087af314f5c45066005b9232e65cf3b714a1a2d5ab107d668e7c68da22e4c"
+    },
+    {
+      "question_text": "What is the difference between 'fillna' and 'dropna'?",
+      "code_snippet": null,
+      "options": [
+        "'fillna' fills missing values, 'dropna' deletes rows with missing values",
+        "'fillna' deletes rows with missing values, 'dropna' fills missing values",
+        "'fillna' and 'dropna' are the same",
+        "'fillna' is used for DataFrames, 'dropna' is used for Series"
+      ],
+      "explanation": "'fillna' is used to fill missing values in a DataFrame, while 'dropna' is used to delete rows or columns with missing values.",
+      "answer_hash": "9592f8596fd0d413272f49394ac52c522c3316a8844e291a359ad832735c2c1c"
+    },
+    {
+      "question_text": "What will be the output of the following code?",
+      "code_snippet": "import pandas as pd\nimport numpy as np\n\ndf = pd.DataFrame({'A': [1, 2, np.nan, 4], 'B': [5, np.nan, 7, 8]})\ndf = df.fillna({'A': 0, 'B': 10})\nprint(df)",
+      "options": [
+        "```text\nA    B\n0    1.0  5.0\n1    2.0 10.0\n2    0.0  7.0\n3    4.0  8.0\n```",
+        "```text\nA    B\n0    1.0  5.0\n1    2.0 10.0\n2    0.0 10.0\n3    4.0  8.0\n```",
+        "```text\nA    B\n0    1.0  5.0\n1    2.0  6.0\n2    0.0  7.0\n3    4.0  8.0\n```",
+        "```text\nA    B\n0    1.0  5.0\n1    2.0 10.0\n2    0.0  7.0\n3    4.0 10.0\n```"
+      ],
+      "explanation": "The 'fillna' method replaces missing values in each column with the specified value. In this case, missing values in column 'A' are replaced with 0 and in column 'B' with 10.",
+      "answer_hash": "aa6cf41258d572aa49f23699a251fad271a7122f79803d6b6b5f4f3acab2ace1"
+    },
+    {
+      "question_text": "Can we use 'fillna' with multiple values?",
+      "code_snippet": null,
+      "options": [
+        "Yes, we can use 'fillna' with multiple values",
+        "No, we can only use 'fillna' with a single value",
+        "We can use 'fillna' with multiple values, but only for DataFrames",
+        "We can use 'fillna' with multiple values, but only for Series"
+      ],
+      "explanation": "We can use 'fillna' with multiple values by passing a dictionary with column names as keys and the fill values as values.",
+      "answer_hash": "02d733fbf36f499a969ad29abae51102154dc7a17c13e233e8533b663d889f58"
+    },
+    {
+      "question_text": "What will happen if we use 'fillna' on a DataFrame with no missing values?",
+      "code_snippet": null,
+      "options": [
+        "It will raise an error",
+        "It will do nothing",
+        "It will fill all values with the specified value",
+        "It will delete all rows"
+      ],
+      "explanation": "If we use 'fillna' on a DataFrame with no missing values, it will not change the DataFrame because there are no missing values to fill.",
+      "answer_hash": "ea78233415bacdab587ff5aeb0dc0a78c2f2f18c0b159f7a3177a8f51822a4ed"
+    },
+    {
+      "question_text": "Can we use 'fillna' with a function?",
+      "code_snippet": null,
+      "options": [
+        "Yes, we can use 'fillna' with a function",
+        "No, we can only use 'fillna' with a single value",
+        "We can use 'fillna' with a function, but only for DataFrames",
+        "We can use 'fillna' with a function, but only for Series"
+      ],
+      "explanation": "We can use 'fillna' with a function that calculates the fill value. This can be useful for filling missing values with a mean, median, or mode.",
+      "answer_hash": "89d1498fb70d2cb013c694f873c8064dde43ed3a5d1eb86724788ba500a67669"
+    },
+    {
+      "question_text": "What will be the output of the following code?",
+      "code_snippet": "import pandas as pd\nimport numpy as np\n\ndf = pd.DataFrame({'A': [1, 2, np.nan, 4]})\ndf = df.fillna(df.mean())\nprint(df)",
+      "options": [
+        "```text\nA\n0    1.0\n1    2.0\n2    2.333333\n3    4.0\n```",
+        "```text\nA\n0    1.0\n1    2.0\n2    0.0\n3    4.0\n```",
+        "```text\nA\n0    1.0\n1    2.0\n2    1.0\n3    4.0\n```",
+        "```text\nA\n0    1.0\n1    2.0\n2    7.0\n3    4.0\n```"
+      ],
+      "explanation": "The 'fillna' method replaces missing values with the mean of the column. In this case, the mean of column 'A' is (1+2+4)/3 = 7/3 = 2.333333.",
+      "answer_hash": "a3ccdb359ff58f78b54cf22077d82dd862e1b891285d6749b8dcfa7100b1d68f"
+    },
+    {
+      "question_text": "What is the difference between 'fillna' and 'interpolate'?",
+      "code_snippet": null,
+      "options": [
+        "'fillna' fills missing values with a specified value, 'interpolate' fills missing values with interpolated values",
+        "'fillna' fills missing values with interpolated values, 'interpolate' fills missing values with a specified value",
+        "'fillna' and 'interpolate' are the same",
+        "'fillna' is used for DataFrames, 'interpolate' is used for Series"
+      ],
+      "explanation": "'fillna' is used to fill missing values with a specified value, while 'interpolate' is used to fill missing values with interpolated values. 'interpolate' can be used to fill missing values with linear or polynomial interpolation.",
+      "answer_hash": "b677b9b9398460855e3e2537c18ef80f2ee71e83cc92d6c439395e433c710188"
+    }
+  ]
+}
