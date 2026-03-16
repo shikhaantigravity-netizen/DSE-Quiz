@@ -1,0 +1,126 @@
+{
+  "title": "Unit 7",
+  "access_code": "Z9PUR1",
+  "questions": [
+    {
+      "question_text": "What is the purpose of the fillna() function in pandas?",
+      "code_snippet": null,
+      "options": [
+        "To drop missing values",
+        "To fill missing values",
+        "To create missing values",
+        "To replace existing values"
+      ],
+      "explanation": "The fillna() function is used to fill missing or NaN values in a DataFrame. It replaces the missing values with a specified value, which can be a number, a string, or even another DataFrame.",
+      "answer_hash": "e3b8c7e2343d30bec0afe96b02cbff87c274b6e6cb37a6b13dd02f1ae8974fd8"
+    },
+    {
+      "question_text": "What will be the output of the following code?",
+      "code_snippet": "import pandas as pd\nimport numpy as np\n\ndata = {'Name': ['Tom', 'nick', 'krish', 'jack'], 'Age': [20, 21, np.nan, 18]}\ndf = pd.DataFrame(data)\ndf.fillna(0, inplace=True)\nprint(df)",
+      "options": [
+        "```Name   Age\n0   Tom  20.0\n1  nick  21.0\n2 krish   0.0\n3  jack  18.0```",
+        "```Name   Age\n0   Tom  20.0\n1  nick  21.0\n2 krish   0.0\n3  jack  18.0``` will raise an error",
+        "```Name   Age\n0   Tom  20.0\n1  nick  21.0\n2 krish  21.0\n3  jack  18.0```",
+        "```Name   Age\n0   Tom  20.0\n1  nick  21.0\n2 krish  20.0\n3  jack  18.0```"
+      ],
+      "explanation": "The fillna() function replaces the NaN value in the 'Age' column with 0. The inplace=True parameter means that the changes are made directly to the original DataFrame.",
+      "answer_hash": "0a1dcd62ba725ff5f62f2b48c6e59a4820dbda78363ea4db8a6a8fe525f3bec4"
+    },
+    {
+      "question_text": "What is the difference between fillna() and dropna() functions?",
+      "code_snippet": null,
+      "options": [
+        "fillna() drops rows with missing values, while dropna() fills missing values",
+        "fillna() fills missing values, while dropna() drops rows with missing values",
+        "fillna() and dropna() are used for data merging",
+        "fillna() and dropna() are used for data grouping"
+      ],
+      "explanation": "The fillna() function is used to fill missing or NaN values in a DataFrame, while the dropna() function is used to drop rows (or columns) that contain missing values.",
+      "answer_hash": "013333f0b9887bc957fe0c8334c6cde615fd245da0f6dd81889ef33ed87ba6ff"
+    },
+    {
+      "question_text": "What will happen if we use fillna() function without specifying the value to fill?",
+      "code_snippet": null,
+      "options": [
+        "It will raise an error",
+        "It will fill with NaN values",
+        "It will fill with 0 by default",
+        "It will fill with the mean of the respective column by default"
+      ],
+      "explanation": "The fillna() function requires a value to fill the missing values. If no value is specified, it will raise a TypeError.",
+      "answer_hash": "442a7e14bc3323248efa57dec9624e98f413d2f21f8388d2758301452d78ac91"
+    },
+    {
+      "question_text": "What is the purpose of the inplace parameter in fillna() function?",
+      "code_snippet": null,
+      "options": [
+        "To specify the value to fill",
+        "To specify the column to fill",
+        "To make changes directly to the original DataFrame",
+        "To create a new DataFrame with the filled values"
+      ],
+      "explanation": "The inplace parameter is a boolean value that specifies whether the changes should be made directly to the original DataFrame or if a new DataFrame should be returned with the changes.",
+      "answer_hash": "627f8dd1fed88aafb3aa9fa099af0d6372aaa88a5c8a50e7e657b5fadd605169"
+    },
+    {
+      "question_text": "What will be the output of the following code?",
+      "code_snippet": "import pandas as pd\nimport numpy as np\n\ndata = {'Name': ['Tom', 'nick', 'krish', 'jack'], 'Age': [20, 21, np.nan, 18]}\ndf = pd.DataFrame(data)\ndf['Age'].fillna(0, inplace=True)\nprint(df)",
+      "options": [
+        "```Name   Age\n0   Tom  20.0\n1  nick  21.0\n2 krish   0.0\n3  jack  18.0```",
+        "```Name   Age\n0   Tom  20.0\n1  nick  21.0\n2 krish  21.0\n3  jack  18.0```",
+        "```Name   Age\n0   Tom  20.0\n1  nick  21.0\n2 krish  20.0\n3  jack  18.0```",
+        "This code will raise an error"
+      ],
+      "explanation": "The fillna() function replaces the NaN value in the 'Age' column with 0. The inplace=True parameter means that the changes are made directly to the Series 'Age', and since we are printing the whole DataFrame, the changes are reflected.",
+      "answer_hash": "0a1dcd62ba725ff5f62f2b48c6e59a4820dbda78363ea4db8a6a8fe525f3bec4"
+    },
+    {
+      "question_text": "Will the fillna() function work with non-numeric data?",
+      "code_snippet": null,
+      "options": [
+        "Yes, it works with both numeric and non-numeric data",
+        "No, it only works with numeric data",
+        "Yes, but it requires additional parameters for non-numeric data",
+        "No, it raises an error for non-numeric data"
+      ],
+      "explanation": "The fillna() function can fill missing values in both numeric and non-numeric columns. It can fill with any type of value, including strings, integers, floats, etc.",
+      "answer_hash": "a1845005bfc340af52056de6c3ae4012b96f07ffb1d5970686355b48a8e3961c"
+    },
+    {
+      "question_text": "What will be the output of the following code?",
+      "code_snippet": "import pandas as pd\nimport numpy as np\n\ndata = {'Name': ['Tom', 'nick', np.nan, 'jack'], 'Age': [20, 21, 22, 18]}\ndf = pd.DataFrame(data)\ndf.fillna('Unknown', inplace=True)\nprint(df)",
+      "options": [
+        "```Name     Age\n0     Tom  20.0\n1    nick  21.0\n2  Unknown  22.0\n3    jack  18.0```",
+        "```Name     Age\n0     Tom  20.0\n1    nick  21.0\n2     NaN  22.0\n3    jack  18.0```",
+        "```Name     Age\n0     Tom  20.0\n1    nick  21.0\n2    nick  22.0\n3    jack  18.0```",
+        "```Name     Age\n0     Tom  20.0\n1    nick  21.0\n2    Tom  22.0\n3    jack  18.0```"
+      ],
+      "explanation": "The fillna() function replaces the NaN value in the 'Name' column with 'Unknown'. The inplace=True parameter means that the changes are made directly to the original DataFrame.",
+      "answer_hash": "d38cc1cf54b76dc8301f22c886b59cd2fad851b5b06de407ffe1f14362f86e83"
+    },
+    {
+      "question_text": "Can we use fillna() function to fill missing values with the mean of the respective column?",
+      "code_snippet": null,
+      "options": [
+        "Yes, we can use the 'mean' parameter in fillna()",
+        "Yes, we can use the fillna() function with the mean() function",
+        "No, fillna() cannot be used with mean",
+        "Yes, but only for numeric columns"
+      ],
+      "explanation": "We can use the fillna() function with the mean() function to fill missing values with the mean of the respective column. For example: df['Age'].fillna(df['Age'].mean(), inplace=True)",
+      "answer_hash": "99ab2189220ad76f33d8f09c2f7c70f10ee532fa3eed22590a21ec34a595430f"
+    },
+    {
+      "question_text": "What will happen if there are no missing values in the DataFrame?",
+      "code_snippet": null,
+      "options": [
+        "The fillna() function will raise an error",
+        "The fillna() function will return the original DataFrame",
+        "The fillna() function will create a new column with the filled value",
+        "The fillna() function will fill all values with the specified value"
+      ],
+      "explanation": "If there are no missing values in the DataFrame, the fillna() function will simply return the original DataFrame without making any changes.",
+      "answer_hash": "12678ce2749a227c1978f3e8cc75c4273897cebdae750bbced8153a64510f99d"
+    }
+  ]
+}
