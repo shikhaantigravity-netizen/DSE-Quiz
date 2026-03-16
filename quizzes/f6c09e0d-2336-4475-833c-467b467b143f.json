@@ -1,0 +1,126 @@
+{
+  "title": "Unit S",
+  "access_code": "UTUISO",
+  "questions": [
+    {
+      "question_text": "What is the primary function of the 'fillna' method in Python Data Analysis?",
+      "code_snippet": null,
+      "options": [
+        "To replace missing values with a specified value",
+        "To drop rows with missing values",
+        "To create a new DataFrame",
+        "To perform data visualization"
+      ],
+      "explanation": "The 'fillna' method is used to replace missing or NaN values in a DataFrame with a specified value, which can be a number, a string, or even another DataFrame.",
+      "answer_hash": "c8b1ce9292244099a63ea30624b37fe99733278b98cad721b1a373025d6c5fa1"
+    },
+    {
+      "question_text": "What will be the output of the following code?",
+      "code_snippet": "import pandas as pd\nimport numpy as np\ndf = pd.DataFrame({'A': [1, 2, np.nan, 4]})\ndf = df.fillna(0)\nprint(df)",
+      "options": [
+        "```text\nA\n0    1.0\n1    2.0\n2    0.0\n3    4.0\n```",
+        "```text\nA\n0    1.0\n1    2.0\n2    NaN\n3    4.0\n```",
+        "```text\nA\n0    1.0\n1    2.0\n2    0.0\n3    4.0\n```",
+        "```text\nA\n0    NaN\n1    2.0\n2    NaN\n3    4.0\n```"
+      ],
+      "explanation": "The 'fillna' method replaces the NaN value in the 'A' column with 0, resulting in the shown output.",
+      "answer_hash": "81bf62bba36909e21e45d0c30c2162c6e841bb1f21cd1a8fb2af910996726e4b"
+    },
+    {
+      "question_text": "What happens when you use 'fillna' with a DataFrame that has no missing values?",
+      "code_snippet": null,
+      "options": [
+        "It throws an error",
+        "It returns the original DataFrame unchanged",
+        "It creates a new DataFrame with all values replaced",
+        "It replaces all values with NaN"
+      ],
+      "explanation": "If a DataFrame has no missing values, the 'fillna' method will simply return the original DataFrame without making any changes.",
+      "answer_hash": "968281e6ff12cdde8853297366c4be788fc7303c1d312be3e3b793555dc8d546"
+    },
+    {
+      "question_text": "What will be the output of the following code?",
+      "code_snippet": "import pandas as pd\nimport numpy as np\ndf = pd.DataFrame({'A': [1, 2, np.nan, 4], 'B': [np.nan, 2, 3, 4]})\ndf = df.fillna({\"A\": 0, \"B\": 1})\nprint(df)",
+      "options": [
+        "```text\n   A    B\n0  1.0  1.0\n1  2.0  2.0\n2  0.0  3.0\n3  4.0  4.0\n```",
+        "```text\n   A    B\n0  1.0  1.0\n1  2.0  2.0\n2  0.0  3.0\n3  4.0  4.0\n```",
+        "```text\n   A    B\n0  1.0  1.0\n1  2.0  2.0\n2  NaN  3.0\n3  4.0  4.0\n```",
+        "```text\n   A    B\n0  1.0  NaN\n1  2.0  2.0\n2  0.0  3.0\n3  4.0  4.0\n```"
+      ],
+      "explanation": "The 'fillna' method replaces the NaN values in the 'A' and 'B' columns with the specified values (0 and 1 respectively), resulting in the shown output.",
+      "answer_hash": "97b075808a12679b21638695b538ab8d7c4e6432b981be9d49180666ef01e9f4"
+    },
+    {
+      "question_text": "What is the purpose of using 'inplace=True' with the 'fillna' method?",
+      "code_snippet": null,
+      "options": [
+        "To replace missing values without creating a new DataFrame",
+        "To create a new DataFrame with the replaced values",
+        "To drop rows with missing values",
+        "To perform data visualization"
+      ],
+      "explanation": "Using 'inplace=True' with 'fillna' modifies the original DataFrame directly, replacing the missing values without creating a new DataFrame.",
+      "answer_hash": "9bb4c7cbe431b59d121c14f707275c09e651a805eb34edd2e0bc3d5467565cfa"
+    },
+    {
+      "question_text": "What will be the output of the following code?",
+      "code_snippet": "import pandas as pd\nimport numpy as np\ndf = pd.DataFrame({'A': [1, 2, np.nan, 4]})\ndf = df.fillna(\"Unknown\")\nprint(df)",
+      "options": [
+        "```text\n      A\n0      1\n1      2\n2  Unknown\n3      4\n```",
+        "```text\n      A\n0    1.0\n1    2.0\n2    NaN\n3    4.0\n```",
+        "```text\n      A\n0      1\n1      2\n2    0.0\n3      4\n```",
+        "```text\n      A\n0      Unknown\n1      Unknown\n2      Unknown\n3      Unknown\n```"
+      ],
+      "explanation": "The 'fillna' method replaces the NaN value in the 'A' column with the string 'Unknown', resulting in the shown output.",
+      "answer_hash": "81af14dd8cf9d7ae0c43570412594776d7fec245187136b4933c38830d3ded4e"
+    },
+    {
+      "question_text": "What error will occur if you use 'fillna' with an incorrect data type?",
+      "code_snippet": null,
+      "options": [
+        "TypeError",
+        "ValueError",
+        "KeyError",
+        "IndexError"
+      ],
+      "explanation": "If you try to use 'fillna' with an incorrect data type, a TypeError will occur, indicating that the data type is not compatible with the replacement value.",
+      "answer_hash": "7af339841d330e8a316ba6eb8b2928adf4297d7b6b1734abc7150afc25234b37"
+    },
+    {
+      "question_text": "What will be the output of the following code?",
+      "code_snippet": "import pandas as pd\nimport numpy as np\ndf = pd.DataFrame({'A': [1, 2, np.nan, 4], 'B': [np.nan, 2, 3, 4]})\ndf = df.fillna(method='ffill')\nprint(df)",
+      "options": [
+        "```text\n   A    B\n0  1.0  2.0\n1  2.0  2.0\n2  2.0  3.0\n3  4.0  4.0\n```",
+        "```text\n   A    B\n0  1.0  NaN\n1  2.0  2.0\n2  NaN  3.0\n3  4.0  4.0\n```",
+        "```text\n   A    B\n0  1.0  1.0\n1  2.0  2.0\n2  0.0  3.0\n3  4.0  4.0\n```",
+        "```text\n   A    B\n0  1.0  1.0\n1  2.0  2.0\n2  2.0  3.0\n3  4.0  4.0\n```"
+      ],
+      "explanation": "The 'fillna' method with the 'ffill' method replaces the NaN values by propagating the last valid value forward, resulting in the shown output.",
+      "answer_hash": "bc8de8675d35cd77f19e79e066673eba43eab7b6900bce27d67d68a5404c1413"
+    },
+    {
+      "question_text": "What is the purpose of using 'limit' parameter with the 'fillna' method?",
+      "code_snippet": null,
+      "options": [
+        "To limit the number of rows that are filled",
+        "To limit the number of columns that are filled",
+        "To limit the number of forward fills",
+        "To limit the number of backward fills"
+      ],
+      "explanation": "The 'limit' parameter in 'fillna' with the 'ffill' method is used to limit the number of forward fills, which can help prevent excessive filling of missing values.",
+      "answer_hash": "954ff0e27f84dbd4ae4e0ec4b0a33dcfd6b83850592ee5afa99d95a42f190ef3"
+    },
+    {
+      "question_text": "What will be the output of the following code?",
+      "code_snippet": "import pandas as pd\nimport numpy as np\ndf = pd.DataFrame({'A': [1, 2, np.nan, 4], 'B': [np.nan, 2, 3, 4]})\ndf = df.fillna(method='bfill')\nprint(df)",
+      "options": [
+        "```text\n   A    B\n0  1.0  2.0\n1  2.0  2.0\n2  4.0  3.0\n3  4.0  4.0\n```",
+        "```text\n   A    B\n0  1.0  NaN\n1  2.0  2.0\n2  NaN  3.0\n3  4.0  4.0\n```",
+        "```text\n   A    B\n0  1.0  1.0\n1  2.0  2.0\n2  0.0  3.0\n3  4.0  4.0\n```",
+        "```text\n   A    B\n0  1.0  2.0\n1  2.0  2.0\n2  4.0  3.0\n3  4.0  4.0\n```"
+      ],
+      "explanation": "The 'fillna' method with the 'bfill' method replaces the NaN values by propagating the next valid value backward, resulting in the shown output.",
+      "answer_hash": "3a0be9ea96f06b98a2c3513f3030bc9ae75bed74bff82b9a29f8e5fae9e7c1da"
+    }
+  ]
+}
