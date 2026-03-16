@@ -1,0 +1,10 @@
+.venv/
+.env
+__pycache__/
+*.pyc
+google_credentials.json
+# Privacy: Hide Teacher's generation logic from GitHub
+teacher_app.py
+
+# Quizzes: NOT ignored because the online app needs them
+# quizzes/
