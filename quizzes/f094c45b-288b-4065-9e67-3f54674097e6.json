@@ -1,0 +1,126 @@
+{
+  "title": "Unit 34",
+  "access_code": "TYMQO8",
+  "questions": [
+    {
+      "question_text": "What is the purpose of the groupby function in pandas?",
+      "code_snippet": null,
+      "options": [
+        "To sort data in ascending order",
+        "To filter data based on conditions",
+        "To group data by one or more columns and perform operations",
+        "To merge data from multiple DataFrames"
+      ],
+      "explanation": "The groupby function is used to group data by one or more columns and perform various operations such as aggregation, filtration, and transformation.",
+      "answer_hash": "f48f4cdb69266c76f2c7c69593df7ec53dee2183a0c105bb2d62811227e66851"
+    },
+    {
+      "question_text": "What is the output of the following code?",
+      "code_snippet": "import pandas as pd\n\ndata = {'Company': ['GOOG', 'GOOG', 'MSFT', 'MSFT', 'FB'],\n        'Person': ['Sam', 'Charlie', 'Amy', 'Vanessa', 'Carl'],\n        'Sales': [200, 120, 340, 124, 243]}\n\ndf = pd.DataFrame(data)\n\ngrouped_df = df.groupby('Company')['Sales'].sum()\n\nprint(grouped_df)",
+      "options": [
+        "```Company\nGOOG    320\nMSFT    464\nFB      243\nName: Sales, dtype: int64```",
+        "```Company\nGOOG    120\nMSFT    340\nFB      243\nName: Sales, dtype: int64```",
+        "```Company\nGOOG    200\nMSFT    124\nFB      243\nName: Sales, dtype: int64```",
+        "```Company\nGOOG    320\nMSFT    464\nFB      123\nName: Sales, dtype: int64```"
+      ],
+      "explanation": "The groupby function groups the data by 'Company' and calculates the sum of 'Sales' for each company. The output is a pandas Series with the company names as the index and the sum of sales as the values.",
+      "answer_hash": "4f8efbf43df4e72f7c6f4763caeefe6ae4d82c6a63840a0f573e4daf84c3088e"
+    },
+    {
+      "question_text": "What will be the result of the following code?",
+      "code_snippet": "import pandas as pd\n\ndata = {'A': [1, 2, 3, 4], 'B': [5, 6, 7, 8]}\n\ndf = pd.DataFrame(data)\n\ngrouped_df = df.groupby('A').sum()\n\nprint(grouped_df)",
+      "options": [
+        "Error because 'A' is not a categorical column",
+        "Error because 'B' is not a numerical column",
+        "```A\nB\n1  5\n2  6\n3  7\n4  8\n```",
+        "```A\nB\n1  5\n2  6\n3  7\n4  8\nName: B, dtype: int64```"
+      ],
+      "explanation": "The groupby function requires a categorical column to group the data. In this case, 'A' is not a categorical column, it's a numerical column. So the code will raise a TypeError.",
+      "answer_hash": "9dd28e78b04eac29e3366b085b72e8b8d69135a028e3ab4e0dc7e50740d2002e"
+    },
+    {
+      "question_text": "How to get the count of each group after grouping a DataFrame?",
+      "code_snippet": null,
+      "options": [
+        "df.groupby('column').sum()",
+        "df.groupby('column').count()",
+        "df.groupby('column').mean()",
+        "df.groupby('column').size()"
+      ],
+      "explanation": "The size() function returns the number of rows in each group, which is equivalent to the count of each group.",
+      "answer_hash": "ca2e36446fbe14c3484cd773e48a95dd15849b68d908ef8c142cc6e1b53e0017"
+    },
+    {
+      "question_text": "What is the difference between groupby and pivot_table?",
+      "code_snippet": null,
+      "options": [
+        "groupby is used for aggregation, pivot_table is used for data transformation",
+        "groupby is used for data transformation, pivot_table is used for aggregation",
+        "groupby is used for filtering, pivot_table is used for sorting",
+        "groupby is used for sorting, pivot_table is used for filtering"
+      ],
+      "explanation": "The groupby function is used for aggregation operations such as sum, mean, count, etc. The pivot_table function is used for data transformation, it can be used to reshape the data from long format to wide format.",
+      "answer_hash": "d9aa5c93a04e11b35353eeeeeb384f0d95eca0a6dde4703a806657fcfa3fcf88"
+    },
+    {
+      "question_text": "What will be the output of the following code?",
+      "code_snippet": "import pandas as pd\n\ndata = {'Company': ['GOOG', 'GOOG', 'MSFT', 'MSFT'],\n        'Person': ['Sam', 'Charlie', 'Amy', 'Vanessa'],\n        'Sales': [200, 120, 340, 124]}\n\ndf = pd.DataFrame(data)\n\ngrouped_df = df.groupby('Company')['Sales'].mean()\n\nprint(grouped_df)",
+      "options": [
+        "```Company\nGOOG    160.0\nMSFT    232.0\nName: Sales, dtype: float64```",
+        "```Company\nGOOG    200\nMSFT    340\nName: Sales, dtype: int64```",
+        "```Company\nGOOG    120\nMSFT    124\nName: Sales, dtype: int64```",
+        "```Company\nGOOG    320\nMSFT    464\nName: Sales, dtype: int64```"
+      ],
+      "explanation": "The groupby function groups the data by 'Company' and calculates the mean of 'Sales' for each company. The output is a pandas Series with the company names as the index and the mean of sales as the values.",
+      "answer_hash": "ced0715dc82c4e3db8608e673b5fed68c3a81be5e76b6858cd70f1447dc472a1"
+    },
+    {
+      "question_text": "How to handle missing values in a DataFrame after grouping?",
+      "code_snippet": null,
+      "options": [
+        "Use the fillna() function to fill missing values",
+        "Use the dropna() function to drop missing values",
+        "Use the groupby() function to group missing values",
+        "Use the pivot_table() function to transform missing values"
+      ],
+      "explanation": "The fillna() function is used to fill missing values in a DataFrame. After grouping a DataFrame, missing values can be filled using the fillna() function.",
+      "answer_hash": "481bf3a8753aaca4f36cf8009d5abe01ecd4e504498462aca85f660477e1e2d6"
+    },
+    {
+      "question_text": "What will be the result of the following code?",
+      "code_snippet": "import pandas as pd\n\ndata = {'A': [1, 2, 3, 4], 'B': [5, 6, 7, 8]}\n\ndf = pd.DataFrame(data)\n\ngrouped_df = df.groupby('A').apply(lambda x: x['B'].sum())\n\nprint(grouped_df)",
+      "options": [
+        "```A\n1    5\n2    6\n3    7\n4    8\nName: B, dtype: int64```",
+        "Error because 'A' is not a categorical column",
+        "```A\n1    5\n2    6\n3    7\n4    8\n```",
+        "```A\n1    5\n2    6\n3    7\n4    8\nName: B, dtype: int64\n```"
+      ],
+      "explanation": "The groupby function groups the data by 'A' and applies a lambda function to calculate the sum of 'B' for each group. The output is a pandas Series with the group names as the index and the sum of 'B' as the values.",
+      "answer_hash": "46a08f265c9935fe988a52b0f5b4f2a73f502519c80809b0d985e39263702017"
+    },
+    {
+      "question_text": "What is the purpose of the transform function in pandas?",
+      "code_snippet": null,
+      "options": [
+        "To transform data from wide format to long format",
+        "To transform data from long format to wide format",
+        "To apply a function to each group and return a DataFrame with the same shape as the original DataFrame",
+        "To apply a function to each row and return a DataFrame with the same shape as the original DataFrame"
+      ],
+      "explanation": "The transform function is used to apply a function to each group and return a DataFrame with the same shape as the original DataFrame. It is often used in conjunction with the groupby function to perform transformations on the data.",
+      "answer_hash": "f271b1bfeb508a826791dc02762c8a7169c0a800baa5d60d41c48e8be57bc04d"
+    },
+    {
+      "question_text": "What will be the output of the following code?",
+      "code_snippet": "import pandas as pd\n\ndata = {'Company': ['GOOG', 'GOOG', 'MSFT', 'MSFT'],\n        'Person': ['Sam', 'Charlie', 'Amy', 'Vanessa'],\n        'Sales': [200, 120, 340, 124]}\n\ndf = pd.DataFrame(data)\n\ngrouped_df = df.groupby('Company')['Sales'].agg(['sum', 'mean'])\n\nprint(grouped_df)",
+      "options": [
+        "```Company       sum       mean\nGOOG        320  160.000000\nMSFT        464  232.000000```",
+        "```Company       sum       mean\nGOOG        200  200.000000\nMSFT        340  340.000000```",
+        "```Company       sum       mean\nGOOG        120  120.000000\nMSFT        124  124.000000```",
+        "```Company       sum       mean\nGOOG        320  160\nMSFT        464  232```"
+      ],
+      "explanation": "The groupby function groups the data by 'Company' and calculates the sum and mean of 'Sales' for each company using the agg function. The output is a pandas DataFrame with the company names as the index and the sum and mean of sales as the columns.",
+      "answer_hash": "b3bc4ae5de869e7ef091c2a1051293e8b3acb10ad4c5b31beeb3c361441bb1af"
+    }
+  ]
+}
