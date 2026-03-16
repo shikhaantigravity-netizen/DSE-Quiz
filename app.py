@@ -145,8 +145,9 @@ def submit_result_to_gsheet(quiz_id, name, roll, score, total, sheet_title):
         worksheet.append_row([timestamp, name, roll, f"{score} / {total}", total])
         return True
     except gspread.exceptions.SpreadsheetNotFound:
+        email = st.session_state.get("service_account_email", "your service account email")
         st.error(f"❌ **Spreadsheet Not Found!**")
-        st.info(f"The app could not find a sheet named '{SPREADSHEET_NAME}' or with ID '{SPREADSHEET_ID}'. Check your Secrets.")
+        st.info(f"The app could not find a sheet named '{SPREADSHEET_NAME}' or with ID '{SPREADSHEET_ID}'.\n\n**Action Required:** Ensure the Google Sheet is shared with this email:\n\n`{email}`")
         return False
     except Exception as e:
         st.error(f"❌ **Failed to submit results**: {e}")
