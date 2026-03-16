@@ -48,6 +48,11 @@ def get_gspread_client():
             creds_json = st.secrets["GOOGLE_CREDENTIALS"]
             # Handle both string and dict secrets
             creds_dict = json.loads(creds_json) if isinstance(creds_json, str) else creds_json
+            
+            # --- FIX: Handle malformed private key newlines ---
+            if "private_key" in creds_dict:
+                creds_dict["private_key"] = creds_dict["private_key"].replace("\\n", "\n")
+                
             st.session_state.service_account_email = creds_dict.get("client_email")
             creds = Credentials.from_service_account_info(creds_dict, scopes=scope)
             return gspread.authorize(creds)
@@ -104,6 +109,10 @@ def submit_result_to_gsheet(quiz_id, name, roll, score, total, sheet_title):
         return False
         
     try:
+        if not SPREADSHEET_ID and not SPREADSHEET_NAME:
+            st.error("❌ **Configuration Error**: Both SPREADSHEET_ID and SPREADSHEET_NAME are empty. Please check your Secrets.")
+            return False
+            
         spreadsheet = client.open_by_key(SPREADSHEET_ID) if SPREADSHEET_ID else client.open(SPREADSHEET_NAME)
         
         # Use simple cleaned name
@@ -121,8 +130,12 @@ def submit_result_to_gsheet(quiz_id, name, roll, score, total, sheet_title):
         timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         worksheet.append_row([timestamp, name, roll, f"{score} / {total}", total])
         return True
+    except gspread.exceptions.SpreadsheetNotFound:
+        st.error(f"❌ **Spreadsheet Not Found!**")
+        st.info(f"The app could not find a sheet named '{SPREADSHEET_NAME}' or with ID '{SPREADSHEET_ID}'. Check your Secrets.")
+        return False
     except Exception as e:
-        st.error(f"Failed to submit results to Google Sheet: {e}")
+        st.error(f"❌ **Failed to submit results**: {e}")
         return False
 
 
@@ -228,13 +241,21 @@ if st.session_state.quiz_questions:
                 st.markdown(f"**Q{idx + 1}: {q.question_text}**")
                 if q.code_snippet:
                     st.code(q.code_snippet, language="python")
-                answer = st.radio("Select answer:", options=q.options, key=f"q_{idx}", label_visibility="collapsed")
+                # Removed default selection by adding index=None
+                # Removed default selection
+                answer = st.radio("Select answer:", options=q.options, key=f"q_{idx}", index=None, label_visibility="collapsed")
                 user_answers.append(answer)
                 st.write("---")
             
             submit_button = st.form_submit_button("Submit Quiz")
             if submit_button:
-                st.session_state.submitted = True
+                # Check if all questions are answered
+                unanswered = [i + 1 for i, ans in enumerate(user_answers) if ans is None]
+                if unanswered:
+                    st.error(f"⚠️ **Please answer all questions!** Missing: {', '.join(map(str, unanswered))}")
+                else:
+                    st.session_state.submitted = True
+                    st.rerun() # Refresh to show results
 
 # Grading & Result Submission
 if st.session_state.submitted and st.session_state.quiz_questions:
