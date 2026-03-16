@@ -1,0 +1,7 @@
+.venv/
+.env
+__pycache__/
+*.pyc
+google_credentials.json
+# Quizzes are NOT ignored because the online app needs them
+# quizzes/
