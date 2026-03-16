@@ -1,0 +1,126 @@
+{
+  "title": "Unit 2",
+  "access_code": "DCWNGP",
+  "questions": [
+    {
+      "question_text": "What is the primary function of the Pandas library in Python?",
+      "code_snippet": null,
+      "options": [
+        "Data Visualization",
+        "Data Manipulation and Analysis",
+        "Machine Learning",
+        "Web Development"
+      ],
+      "correct_answer": "Data Manipulation and Analysis",
+      "explanation": "Pandas is a library in Python that provides data structures and functions to efficiently handle structured data, including tabular data such as spreadsheets and SQL tables. Its primary function is to manipulate and analyze data, making it a fundamental tool in data science."
+    },
+    {
+      "question_text": "What is the result of the following code snippet?",
+      "code_snippet": "import pandas as pd\nimport numpy as np\ndf = pd.DataFrame({'A': [1, 2, 3], 'B': [4, 5, 6]})\ndf['C'] = df['A'] + df['B']\nprint(df)",
+      "options": [
+        "```python\nDataFrame content:\n   A  B  C\n0  1  4  5\n1  2  5  7\n2  3  6  9\n```",
+        "```python\nDataFrame content:\n   A  B  C\n0  1  4  3\n1  2  5  5\n2  3  6  7\n```",
+        "```python\nDataFrame content:\n   A  B  C\n0  1  4  2\n1  2  5  4\n2  3  6  6\n```",
+        "```python\nDataFrame content:\n   A  B  C\n0  1  4  1\n1  2  5  3\n2  3  6  5\n```"
+      ],
+      "correct_answer": "```python\nDataFrame content:\n   A  B  C\n0  1  4  5\n1  2  5  7\n2  3  6  9\n```",
+      "explanation": "This code creates a DataFrame with two columns 'A' and 'B', then adds a new column 'C' that is the sum of 'A' and 'B'. The correct answer is the resulting DataFrame with the new column 'C'."
+    },
+    {
+      "question_text": "How do you select the first row of a Pandas DataFrame?",
+      "code_snippet": null,
+      "options": [
+        "df.loc[0]",
+        "df.iloc[0]",
+        "df.loc[1]",
+        "df.iloc[1]"
+      ],
+      "correct_answer": "df.loc[0]",
+      "explanation": "Both df.loc[0] and df.iloc[0] can be used to select the first row of a Pandas DataFrame. However, df.loc[0] is label-based, while df.iloc[0] is integer position-based. If the index of the DataFrame is integer-based and starts from 0, both will give the same result."
+    },
+    {
+      "question_text": "What is the purpose of the 'dropna' function in Pandas?",
+      "code_snippet": null,
+      "options": [
+        "To drop rows with missing values",
+        "To drop columns with missing values",
+        "To replace missing values with a specified value",
+        "To add new rows with missing values"
+      ],
+      "correct_answer": "To drop rows with missing values",
+      "explanation": "The 'dropna' function in Pandas is used to drop rows (or columns) that contain missing values. By default, it drops rows, but can also be used to drop columns by specifying the 'axis' parameter as 1."
+    },
+    {
+      "question_text": "What is the result of the following code snippet?",
+      "code_snippet": "import pandas as pd\ndf = pd.DataFrame({'A': [1, 2, 3], 'B': [4, 5, 6]})\ndf = df.dropna()\nprint(df)",
+      "options": [
+        "```python\nDataFrame content:\n   A  B\n0  1  4\n1  2  5\n2  3  6\n```",
+        "```python\nDataFrame content:\n   A  B\n0  1  4\n1  2  5\n```",
+        "```python\nDataFrame content:\n   A  B\n0  1  4\n```",
+        "No output because the DataFrame is empty"
+      ],
+      "correct_answer": "```python\nDataFrame content:\n   A  B\n0  1  4\n1  2  5\n2  3  6\n```",
+      "explanation": "Since there are no missing values in the DataFrame, the 'dropna' function does not remove any rows, and the resulting DataFrame remains the same."
+    },
+    {
+      "question_text": "How do you merge two DataFrames on a common column?",
+      "code_snippet": null,
+      "options": [
+        "df1.merge(df2, on='common_column')",
+        "df1.join(df2, on='common_column')",
+        "df1.concat(df2, on='common_column')",
+        "df1.combine(df2, on='common_column')"
+      ],
+      "correct_answer": "df1.merge(df2, on='common_column')",
+      "explanation": "The 'merge' function in Pandas is used to merge two DataFrames on a common column. The 'on' parameter specifies the common column to merge on."
+    },
+    {
+      "question_text": "What is the purpose of the 'groupby' function in Pandas?",
+      "code_snippet": null,
+      "options": [
+        "To group a DataFrame by one or more columns and perform aggregation operations",
+        "To sort a DataFrame by one or more columns",
+        "To filter a DataFrame by one or more conditions",
+        "To merge two DataFrames on a common column"
+      ],
+      "correct_answer": "To group a DataFrame by one or more columns and perform aggregation operations",
+      "explanation": "The 'groupby' function in Pandas is used to group a DataFrame by one or more columns and perform aggregation operations, such as sum, mean, count, etc."
+    },
+    {
+      "question_text": "What is the result of the following code snippet?",
+      "code_snippet": "import pandas as pd\ndf = pd.DataFrame({'A': [1, 2, 3], 'B': [4, 5, 6]})\ndf_grouped = df.groupby('A').sum()\nprint(df_grouped)",
+      "options": [
+        "```python\nDataFrame content:\n   B\nA   \n1  4\n2  5\n3  6\n```",
+        "```python\nDataFrame content:\n   B\nA   \n1  4\n2  5\n3  6\n```",
+        "```python\nDataFrame content:\n   B\nA   \n1  10\n2  15\n3  21\n```",
+        "```python\nDataFrame content:\n   B\nA   \n1  1\n2  4\n3  9\n```"
+      ],
+      "correct_answer": "```python\nDataFrame content:\n   B\nA   \n1  4\n2  5\n3  6\n```",
+      "explanation": "Since there is only one row for each value in column 'A', the sum of each group is the value itself."
+    },
+    {
+      "question_text": "What is the error in the following code snippet?",
+      "code_snippet": "import pandas as pd\ndf = pd.DataFrame({'A': [1, 2, 3], 'B': [4, 5, 6]})\ndf = df.dropna(axis=2)\nprint(df)",
+      "options": [
+        "The 'dropna' function does not support the 'axis' parameter",
+        "The 'axis' parameter should be 0 or 1, not 2",
+        "The DataFrame does not contain any missing values",
+        "The 'dropna' function should be used with the 'inplace' parameter"
+      ],
+      "correct_answer": "The 'axis' parameter should be 0 or 1, not 2",
+      "explanation": "The 'axis' parameter in the 'dropna' function should be 0 (for rows) or 1 (for columns), not 2. Using 'axis=2' will result in a ValueError."
+    },
+    {
+      "question_text": "How do you sort a Pandas DataFrame by a specific column?",
+      "code_snippet": null,
+      "options": [
+        "df.sort_values(by='column_name')",
+        "df.sort(by='column_name')",
+        "df.order_by('column_name')",
+        "df.arrange('column_name')"
+      ],
+      "correct_answer": "df.sort_values(by='column_name')",
+      "explanation": "The 'sort_values' function in Pandas is used to sort a DataFrame by one or more columns. The 'by' parameter specifies the column(s) to sort by."
+    }
+  ]
+}
