@@ -1,0 +1,126 @@
+{
+  "title": "andas Unit 1'):",
+  "access_code": "7ND9YG",
+  "questions": [
+    {
+      "question_text": "What is the primary purpose of the 'groupby' function in Python data analysis?",
+      "code_snippet": null,
+      "options": [
+        "To sort data",
+        "To filter data",
+        "To aggregate data by one or more columns",
+        "To visualize data"
+      ],
+      "correct_answer": "To aggregate data by one or more columns",
+      "explanation": "The 'groupby' function is used to split data into groups based on one or more columns and perform various operations on those groups, such as aggregation. The other options are not the primary purpose of 'groupby'."
+    },
+    {
+      "question_text": "What will be the output of the following code?",
+      "code_snippet": "import pandas as pd\nimport numpy as np\n\ndata = {'Name': ['John', 'Anna', 'Peter', 'Linda'],\n        'Age': [28, 24, 35, 32],\n        'Country': ['USA', 'UK', 'Australia', 'Germany']}\n\ndf = pd.DataFrame(data)\n\ngrouped = df.groupby('Country')\n\nprint(grouped.size())",
+      "options": [
+        "```text\nCountry\nAustralia    1\nGermany      1\nUK           1\nUSA          1\ndtype: int64\n```",
+        "```text\nCountry\nAustralia    2\nGermany      2\nUK           2\nUSA          2\ndtype: int64\n```",
+        "```text\nCountry\nAustralia    1\nGermany      1\nUK           1\nUSA          1\nName: Size, dtype: int64\n```",
+        "```text\nName    Age    Country\n0    John   28        USA\n1    Anna   24         UK\n2   Peter   35  Australia\n3   Linda   32    Germany\n```"
+      ],
+      "correct_answer": "```text\nCountry\nAustralia    1\nGermany      1\nUK           1\nUSA          1\nName: Size, dtype: int64\n```",
+      "explanation": "The 'groupby' function groups the data by 'Country' and the 'size' method returns the number of rows in each group, resulting in the correct output."
+    },
+    {
+      "question_text": "What will happen if you try to 'groupby' a column that does not exist in the DataFrame?",
+      "code_snippet": null,
+      "options": [
+        "It will group by the index of the DataFrame",
+        "It will create a new column with the specified name",
+        "It will raise a KeyError",
+        "It will return an empty DataFrame"
+      ],
+      "correct_answer": "It will raise a KeyError",
+      "explanation": "If you try to 'groupby' a column that does not exist in the DataFrame, pandas will raise a KeyError because it cannot find the specified column."
+    },
+    {
+      "question_text": "What is the purpose of the 'apply' method in conjunction with 'groupby'?",
+      "code_snippet": null,
+      "options": [
+        "To filter data",
+        "To aggregate data",
+        "To apply a custom function to each group",
+        "To sort data"
+      ],
+      "correct_answer": "To apply a custom function to each group",
+      "explanation": "The 'apply' method can be used in conjunction with 'groupby' to apply a custom function to each group of data, allowing for more complex operations."
+    },
+    {
+      "question_text": "What will be the output of the following code?",
+      "code_snippet": "import pandas as pd\n\ndata = {'Name': ['John', 'Anna', 'Peter', 'Linda'],\n        'Age': [28, 24, 35, 32]}\n\ndf = pd.DataFrame(data)\n\ngrouped = df.groupby('Name')\n\nprint(grouped.mean())",
+      "options": [
+        "```text\n          Age\nName       \nAnna    24.0\nJohn    28.0\nLinda   32.0\nPeter   35.0\n```",
+        "```text\n          Age\nName       \nAnna    24.5\nJohn    28.5\nLinda   32.5\nPeter   35.5\n```",
+        "```text\n          Age\nName       \nAnna    24.0\nJohn    28.0\nLinda   32.0\nPeter   35.0\nAge: float64\n```",
+        "```text\nName    Age\n0    John   28\n1    Anna   24\n2   Peter   35\n3   Linda   32\n```"
+      ],
+      "correct_answer": "```text\n          Age\nName       \nAnna    24.0\nJohn    28.0\nLinda   32.0\nPeter   35.0\n```",
+      "explanation": "The 'groupby' function groups the data by 'Name' and the 'mean' method returns the mean 'Age' for each group, resulting in the correct output."
+    },
+    {
+      "question_text": "What error will occur if you try to 'groupby' a DataFrame that contains only one row?",
+      "code_snippet": null,
+      "options": [
+        "KeyError",
+        "ValueError",
+        "TypeError",
+        "No error will occur"
+      ],
+      "correct_answer": "No error will occur",
+      "explanation": "If you try to 'groupby' a DataFrame that contains only one row, no error will occur because the 'groupby' function can still group the data, even if there is only one group."
+    },
+    {
+      "question_text": "What is the purpose of the 'transform' method in conjunction with 'groupby'?",
+      "code_snippet": null,
+      "options": [
+        "To filter data",
+        "To aggregate data",
+        "To apply a transformation to each group",
+        "To sort data"
+      ],
+      "correct_answer": "To apply a transformation to each group",
+      "explanation": "The 'transform' method can be used in conjunction with 'groupby' to apply a transformation to each group of data, such as standardizing or normalizing the data."
+    },
+    {
+      "question_text": "What will be the output of the following code?",
+      "code_snippet": "import pandas as pd\n\ndata = {'Name': ['John', 'Anna', 'Peter', 'Linda'],\n        'Age': [28, 24, 35, 32]}\n\ndf = pd.DataFrame(data)\n\ngrouped = df.groupby('Name')\n\nprint(grouped.count())",
+      "options": [
+        "```text\n          Age\nName       \nAnna    1\nJohn    1\nLinda   1\nPeter   1\n```",
+        "```text\n          Age\nName       \nAnna    2\nJohn    2\nLinda   2\nPeter   2\n```",
+        "```text\n          Age\nName       \nAnna    1\nJohn    1\nLinda   1\nPeter   1\nAge: int64\n```",
+        "```text\nName    Age\n0    John   28\n1    Anna   24\n2   Peter   35\n3   Linda   32\n```"
+      ],
+      "correct_answer": "```text\n          Age\nName       \nAnna    1\nJohn    1\nLinda   1\nPeter   1\n```",
+      "explanation": "The 'groupby' function groups the data by 'Name' and the 'count' method returns the count of non-NA/null values in the 'Age' column for each group, resulting in the correct output."
+    },
+    {
+      "question_text": "What is the difference between 'groupby' and 'pivot_table'?",
+      "code_snippet": null,
+      "options": [
+        "'groupby' is used for aggregation, while 'pivot_table' is used for transformation",
+        "'groupby' is used for transformation, while 'pivot_table' is used for aggregation",
+        "'groupby' is used for filtering, while 'pivot_table' is used for sorting",
+        "'groupby' is used for aggregation, while 'pivot_table' is used for reshaping data"
+      ],
+      "correct_answer": "'groupby' is used for aggregation, while 'pivot_table' is used for reshaping data",
+      "explanation": "'groupby' is used for aggregation, such as calculating the mean or sum of a column, while 'pivot_table' is used for reshaping data, such as creating a new DataFrame with a specific structure."
+    },
+    {
+      "question_text": "What will happen if you try to 'groupby' a column that contains NaN values?",
+      "code_snippet": null,
+      "options": [
+        "It will raise a TypeError",
+        "It will raise a ValueError",
+        "It will exclude the NaN values from the groups",
+        "It will include the NaN values in a separate group"
+      ],
+      "correct_answer": "It will exclude the NaN values from the groups",
+      "explanation": "If you try to 'groupby' a column that contains NaN values, pandas will exclude the NaN values from the groups by default, unless you specify how to handle them using the 'dropna' parameter."
+    }
+  ]
+}
