@@ -1,0 +1,126 @@
+{
+  "title": "saasasda",
+  "access_code": "08F0MC",
+  "questions": [
+    {
+      "question_text": "What is the primary function of the 'pandas' library in Python?",
+      "code_snippet": null,
+      "options": [
+        "Data Visualization",
+        "Machine Learning",
+        "Data Analysis and Manipulation",
+        "Web Development"
+      ],
+      "explanation": "The pandas library is primarily used for data analysis and manipulation, providing data structures and functions to efficiently handle structured data, including tabular data such as spreadsheets and SQL tables.",
+      "answer_hash": "01cf839d415d61f3bcd4cd084b904823d7187eaafea6704dc0a70ae17daf732a"
+    },
+    {
+      "question_text": "What is the output of the following code?",
+      "code_snippet": "import pandas as pd\nimport numpy as np\n\ndata = {'Name': ['Tom', 'Nick', 'John'],\n        'Age': [20, 21, 19]}\ndf = pd.DataFrame(data)\nprint(df)",
+      "options": [
+        "```Name   Age\n0   Tom   20\n1  Nick   21\n2  John   19```",
+        "```Name   Age\n0   John   19\n1   Tom   20\n2  Nick   21```",
+        "```Name   Age\n0   Nick   21\n1   Tom   20\n2  John   19```",
+        "```Name   Age\n0   Tom   20\n1  John   19\n2  Nick   21```"
+      ],
+      "explanation": "The output is a DataFrame with 'Name' and 'Age' columns. The order of the rows is based on the order of the data in the dictionary.",
+      "answer_hash": "83279dc92ea1072b3b27a1cf2f8508510dc9b805f67d19b44cbc7e279a784b81"
+    },
+    {
+      "question_text": "What will be the error when running the following code?",
+      "code_snippet": "import pandas as pd\ndata = {'Name': ['Tom', 'Nick', 'John'],\n        'Age': [20, 21]}\ndf = pd.DataFrame(data)",
+      "options": [
+        "ValueError: arrays must all be same length",
+        "TypeError: data must be a dict",
+        "KeyError: 'Name'",
+        "No error will occur"
+      ],
+      "explanation": "The error occurs because the lengths of the 'Name' and 'Age' arrays do not match. The 'Name' array has 3 elements, while the 'Age' array has only 2 elements.",
+      "answer_hash": "d94b8d92816dfe6c5b10377033465976998d7a8159f5951f02a2ba8f85806919"
+    },
+    {
+      "question_text": "How do you select a specific column from a pandas DataFrame?",
+      "code_snippet": null,
+      "options": [
+        "df['column_name']",
+        "df.column_name",
+        "df.get('column_name')",
+        "df.select('column_name')"
+      ],
+      "explanation": "You can select a specific column from a pandas DataFrame using the square bracket notation. This method returns a Series representing the column.",
+      "answer_hash": "d107dc505da92a824ee2e138cdffcb55238617acfdf29a56d3b45efb647358b4"
+    },
+    {
+      "question_text": "What is the purpose of the 'dropna' function in pandas?",
+      "code_snippet": null,
+      "options": [
+        "To remove rows with missing values",
+        "To remove columns with missing values",
+        "To fill missing values with a specific value",
+        "To create a new DataFrame with missing values"
+      ],
+      "explanation": "The 'dropna' function is used to remove rows (or columns) that contain missing values. By default, it removes rows, but you can also specify 'axis=1' to remove columns.",
+      "answer_hash": "e44cfbc6aa478f4c422355a51e81eb3145efbb89b16a7759cf550d9e289b9a68"
+    },
+    {
+      "question_text": "What is the result of the following code?",
+      "code_snippet": "import pandas as pd\ndata = {'Name': ['Tom', 'Nick', 'John'],\n        'Age': [20, 21, 19]}\ndf = pd.DataFrame(data)\ndf.loc[0, 'Age'] = 25\nprint(df)",
+      "options": [
+        "```Name   Age\n0   Tom   20\n1  Nick   21\n2  John   19```",
+        "```Name   Age\n0   Tom   25\n1  Nick   21\n2  John   19```",
+        "```Name   Age\n0   Nick   21\n1   Tom   20\n2  John   19```",
+        "```Name   Age\n0   Tom   20\n1  John   19\n2  Nick   21```"
+      ],
+      "explanation": "The 'loc' function is used to access a group of rows and columns by label. In this case, it is used to change the 'Age' of the person at index 0 to 25.",
+      "answer_hash": "bcc23bff0afecdefd1a194b1ebe8938f2c962cf0f0ce60bb7194c510cf2f3d77"
+    },
+    {
+      "question_text": "What will be the result of the 'groupby' function on the following DataFrame?",
+      "code_snippet": "import pandas as pd\ndata = {'Name': ['Tom', 'Nick', 'John', 'Tom', 'Nick', 'John'],\n        'Age': [20, 21, 19, 20, 21, 19]}\ndf = pd.DataFrame(data)\nprint(df.groupby('Name')['Age'].mean())",
+      "options": [
+        "```Name\nTom     20.0\nNick    21.0\nJohn    19.0\nName: Age, dtype: float64```",
+        "```Name\nTom     20.5\nNick    21.5\nJohn    19.5\nName: Age, dtype: float64```",
+        "```Name\nTom     21.0\nNick    20.0\nJohn    19.0\nName: Age, dtype: float64```",
+        "```Name\nTom     19.0\nNick    19.0\nJohn    20.0\nName: Age, dtype: float64```"
+      ],
+      "explanation": "The 'groupby' function groups the DataFrame by the 'Name' column and calculates the mean 'Age' for each group.",
+      "answer_hash": "2e59f3fd7d5c7c49b1cc42ce50e4718f4f6c91ce1fabe322124066212169d8a5"
+    },
+    {
+      "question_text": "What is the purpose of the 'merge' function in pandas?",
+      "code_snippet": null,
+      "options": [
+        "To combine two DataFrames based on a common column",
+        "To remove rows with missing values",
+        "To fill missing values with a specific value",
+        "To create a new DataFrame with missing values"
+      ],
+      "explanation": "The 'merge' function is used to combine two DataFrames based on a common column. It returns a new DataFrame that contains the combined data.",
+      "answer_hash": "ad1c108ee9b2cd9e4ac20d71b5d907d23f210311c70323ecce257278ff84644b"
+    },
+    {
+      "question_text": "What is the result of the following code?",
+      "code_snippet": "import pandas as pd\ndata = {'Name': ['Tom', 'Nick', 'John'],\n        'Age': [20, 21, 19]}\ndf = pd.DataFrame(data)\ndf = df.sort_values('Age')\nprint(df)",
+      "options": [
+        "```Name   Age\n0   Tom   20\n1  Nick   21\n2  John   19```",
+        "```Name   Age\n0   John   19\n1   Tom   20\n2  Nick   21```",
+        "```Name   Age\n0   Nick   21\n1   Tom   20\n2  John   19```",
+        "```Name   Age\n0   Tom   20\n1  John   19\n2  Nick   21```"
+      ],
+      "explanation": "The 'sort_values' function sorts the DataFrame by the 'Age' column in ascending order.",
+      "answer_hash": "6317fe006d2a94263510c89cad5a17d11ed8d8a6ded6818b2a6546ae54450475"
+    },
+    {
+      "question_text": "What will be the error when running the following code?",
+      "code_snippet": "import pandas as pd\ndata = {'Name': ['Tom', 'Nick', 'John']}\ndf = pd.DataFrame(data)\nprint(df['Age'])",
+      "options": [
+        "KeyError: 'Age'",
+        "TypeError: data must be a dict",
+        "ValueError: arrays must all be same length",
+        "No error will occur"
+      ],
+      "explanation": "The error occurs because the 'Age' column does not exist in the DataFrame.",
+      "answer_hash": "1a393ce3067b32c03b663791c43b8d738d27863951c23bbd168dae6ba8e50a3e"
+    }
+  ]
+}
