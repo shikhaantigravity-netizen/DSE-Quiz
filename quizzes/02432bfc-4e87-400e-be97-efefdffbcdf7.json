@@ -1,0 +1,126 @@
+{
+  "title": "Unit 9",
+  "access_code": "KYF27R",
+  "questions": [
+    {
+      "question_text": "What is the primary function of the 'fillna' method in Python Data Analysis?",
+      "code_snippet": null,
+      "options": [
+        "To fill missing values in a DataFrame",
+        "To drop rows with missing values",
+        "To create a new DataFrame",
+        "To perform data visualization"
+      ],
+      "explanation": "The 'fillna' method is used to replace missing values in a DataFrame with a specified value, which can be a scalar, a list, or another DataFrame.",
+      "answer_hash": "f55b4c6209487cbc1806092fe293701ca8cdb4cd9bd9ff3b128f3121c3f75167"
+    },
+    {
+      "question_text": "What will be the output of the following code snippet?",
+      "code_snippet": "import pandas as pd\nimport numpy as np\ndf = pd.DataFrame({'A': [1, 2, np.nan, 4]})\ndf.fillna(0, inplace=True)\nprint(df)",
+      "options": [
+        "```text\nA\n0    1.0\n1    2.0\n2    0.0\n3    4.0\n```",
+        "```text\nA\n0    1.0\n1    2.0\n2    NaN\n3    4.0\n```",
+        "```text\nA\n0    1.0\n1    2.0\n2    0.0\n3    0.0\n```",
+        "```text\nA\n0    1\n1    2\n2    NaN\n3    4\n```"
+      ],
+      "explanation": "The 'fillna' method replaces the missing value in the DataFrame with 0. The 'inplace=True' argument modifies the original DataFrame.",
+      "answer_hash": "81bf62bba36909e21e45d0c30c2162c6e841bb1f21cd1a8fb2af910996726e4b"
+    },
+    {
+      "question_text": "What will happen if we use 'fillna' with a non-numeric value on a numeric column?",
+      "code_snippet": null,
+      "options": [
+        "It will throw an error",
+        "It will fill the missing values with the specified non-numeric value",
+        "It will convert the column to a string type",
+        "It will ignore the non-numeric value and fill with NaN"
+      ],
+      "explanation": "When using 'fillna' with a non-numeric value on a numeric column, pandas will throw a TypeError because it cannot convert the non-numeric value to the numeric type of the column.",
+      "answer_hash": "7dd2f27571a0e643bd131ec6f0975daf41596f75430dca99a01a17286797ab34"
+    },
+    {
+      "question_text": "How can we fill missing values with the mean of the respective column using 'fillna'?",
+      "code_snippet": null,
+      "options": [
+        "df.fillna(df.mean())",
+        "df.fillna(df.median())",
+        "df.fillna(df.mode())",
+        "df.fillna(df.std())"
+      ],
+      "explanation": "We can fill missing values with the mean of the respective column by passing the result of 'df.mean()' to the 'fillna' method.",
+      "answer_hash": "c6294df78c9615db21681a6c3410403e9686e4b24095fea072a2a6b8d50f2d3a"
+    },
+    {
+      "question_text": "What will be the output of the following code snippet?",
+      "code_snippet": "import pandas as pd\nimport numpy as np\ndf = pd.DataFrame({'A': [1, 2, np.nan, 4], 'B': [np.nan, 2, 3, 4]})\ndf['A'].fillna(0, inplace=True)\ndf['B'].fillna(df['A'], inplace=True)\nprint(df)",
+      "options": [
+        "```text\nA    B\n0  1.0  NaN\n1  2.0  2.0\n2  0.0  3.0\n3  4.0  4.0\n```",
+        "```text\nA    B\n0  1.0  1.0\n1  2.0  2.0\n2  0.0  0.0\n3  4.0  4.0\n```",
+        "```text\nA    B\n0  1.0  1.0\n1  2.0  2.0\n2  0.0  3.0\n3  4.0  4.0\n```",
+        "```text\nA    B\n0  1.0  1.0\n1  2.0  2.0\n2  0.0  0.0\n3  4.0  4.0\n```"
+      ],
+      "explanation": "The 'fillna' method fills the missing values in column 'A' with 0 and then fills the missing values in column 'B' with the corresponding values from column 'A'.",
+      "answer_hash": "7574663caf5885f578286423ecf9468777b11f9593847f0687dad1f865604678"
+    },
+    {
+      "question_text": "What is the purpose of the 'inplace' parameter in the 'fillna' method?",
+      "code_snippet": null,
+      "options": [
+        "To specify the value to fill missing values with",
+        "To specify the column to fill missing values in",
+        "To modify the original DataFrame",
+        "To create a new DataFrame"
+      ],
+      "explanation": "The 'inplace' parameter is a boolean flag that, when set to True, modifies the original DataFrame by filling the missing values. When set to False, it returns a new DataFrame with the missing values filled.",
+      "answer_hash": "6de99b7833aebac0ffb7c1c0cb1d7cabde2ff8f91ebd972570d63085ae5c3340"
+    },
+    {
+      "question_text": "What will happen if we use 'fillna' on a DataFrame with no missing values?",
+      "code_snippet": null,
+      "options": [
+        "It will throw an error",
+        "It will modify the original DataFrame",
+        "It will return the original DataFrame",
+        "It will create a new DataFrame"
+      ],
+      "explanation": "If a DataFrame has no missing values, the 'fillna' method will simply return the original DataFrame, as there are no missing values to fill.",
+      "answer_hash": "18ec3e6ed7492e51b473565c7cfa7094e21f22234d008eb5d1d864e9b75d652c"
+    },
+    {
+      "question_text": "How can we fill missing values with the median of the respective column using 'fillna'?",
+      "code_snippet": null,
+      "options": [
+        "df.fillna(df.mean())",
+        "df.fillna(df.median())",
+        "df.fillna(df.mode())",
+        "df.fillna(df.std())"
+      ],
+      "explanation": "We can fill missing values with the median of the respective column by passing the result of 'df.median()' to the 'fillna' method.",
+      "answer_hash": "b45c8722c37b38e34b2e38deced5aca4d3770d9a26c9448cfaccebe35126c504"
+    },
+    {
+      "question_text": "What will be the output of the following code snippet?",
+      "code_snippet": "import pandas as pd\nimport numpy as np\ndf = pd.DataFrame({'A': [1, 2, np.nan, 4]})\ndf.fillna({'A': 0}, inplace=True)\nprint(df)",
+      "options": [
+        "```text\nA\n0    1.0\n1    2.0\n2    0.0\n3    4.0\n```",
+        "```text\nA\n0    1.0\n1    2.0\n2    NaN\n3    4.0\n```",
+        "```text\nA\n0    1\n1    2\n2    NaN\n3    4\n```",
+        "```text\nA\n0    1.0\n1    2.0\n2    0\n3    4.0\n```"
+      ],
+      "explanation": "The 'fillna' method fills the missing value in column 'A' with 0. The 'inplace=True' argument modifies the original DataFrame.",
+      "answer_hash": "81bf62bba36909e21e45d0c30c2162c6e841bb1f21cd1a8fb2af910996726e4b"
+    },
+    {
+      "question_text": "What will happen if we use 'fillna' with a dictionary on a DataFrame?",
+      "code_snippet": null,
+      "options": [
+        "It will fill missing values in all columns with the specified values",
+        "It will fill missing values in the specified columns with the specified values",
+        "It will throw an error",
+        "It will return a new DataFrame"
+      ],
+      "explanation": "When using 'fillna' with a dictionary on a DataFrame, we can specify the columns to fill and the values to fill them with. The dictionary keys are the column names, and the values are the fill values.",
+      "answer_hash": "57c732179cca78f6d1df6fc250f4304a5a0bf37664abfdd9d9858bd845e64765"
+    }
+  ]
+}
