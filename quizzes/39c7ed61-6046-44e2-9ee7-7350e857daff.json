@@ -1,0 +1,126 @@
+{
+  "title": "Pandas Unit 1",
+  "access_code": "NXWP45",
+  "questions": [
+    {
+      "question_text": "What is the primary function of the Pandas Groupby object?",
+      "code_snippet": null,
+      "options": [
+        "To perform time series analysis",
+        "To handle missing data",
+        "To split data into groups and apply functions",
+        "To merge datasets"
+      ],
+      "correct_answer": "To split data into groups and apply functions",
+      "explanation": "The correct answer is 'To split data into groups and apply functions' because the Groupby object allows you to split your data into groups based on some criteria and then apply functions to each group. The other options are not the primary function of the Groupby object."
+    },
+    {
+      "question_text": "Consider the following code: ```import pandas as pd; df = pd.DataFrame({'Category': ['A', 'B', 'A', 'B'], 'Value': [10, 20, 30, 40]}); grouped = df.groupby('Category');``` What will be the output of ```grouped.sum()```?",
+      "code_snippet": "import pandas as pd\n\ndf = pd.DataFrame({'Category': ['A', 'B', 'A', 'B'], 'Value': [10, 20, 30, 40]})\ngrouped = df.groupby('Category')\nprint(grouped.sum())",
+      "options": [
+        "```Category\nA    40\nB    60\nName: Value, dtype: int64```",
+        "```Category\nA    10\nB    20\nName: Value, dtype: int64```",
+        "```Category\nA    30\nB    40\nName: Value, dtype: int64```",
+        "```Category\nA    20\nB    30\nName: Value, dtype: int64```"
+      ],
+      "correct_answer": "```Category\nA    40\nB    60\nName: Value, dtype: int64```",
+      "explanation": "The correct answer is the output where 'A' has a sum of 40 (10+30) and 'B' has a sum of 60 (20+40). The other options do not correctly sum the 'Value' column for each category."
+    },
+    {
+      "question_text": "What is the purpose of the 'apply' function in a Pandas Groupby object?",
+      "code_snippet": null,
+      "options": [
+        "To filter groups based on a condition",
+        "To aggregate groups using a custom function",
+        "To sort groups by a specific column",
+        "To merge groups into a single DataFrame"
+      ],
+      "correct_answer": "To aggregate groups using a custom function",
+      "explanation": "The correct answer is 'To aggregate groups using a custom function' because the 'apply' function allows you to apply a custom function to each group in the Groupby object. The other options are not the primary purpose of the 'apply' function."
+    },
+    {
+      "question_text": "Which of the following is a valid way to access a group in a Pandas Groupby object?",
+      "code_snippet": null,
+      "options": [
+        "grouped['A']",
+        "grouped.get_group('A')",
+        "grouped.filter('A')",
+        "grouped.sort('A')"
+      ],
+      "correct_answer": "grouped.get_group('A')",
+      "explanation": "The correct answer is 'grouped.get_group('A')' because this is the standard way to access a group in a Pandas Groupby object. The other options are not valid ways to access a group."
+    },
+    {
+      "question_text": "What will happen if you try to use the 'Groupby' function on a Series object?",
+      "code_snippet": null,
+      "options": [
+        "It will throw an error because 'Groupby' is only applicable to DataFrames",
+        "It will return a DataFrame with the same values as the Series",
+        "It will return a Groupby object with the index of the Series as the group key",
+        "It will return a Groupby object with the values of the Series as the group key"
+      ],
+      "correct_answer": "It will return a Groupby object with the index of the Series as the group key",
+      "explanation": "The correct answer is 'It will return a Groupby object with the index of the Series as the group key' because when you use 'Groupby' on a Series, it groups by the index of the Series. The other options are not correct."
+    },
+    {
+      "question_text": "Consider the following code: ```import pandas as pd; df = pd.DataFrame({'Category': ['A', 'B', 'A', 'B'], 'Value': [10, 20, 30, 40]}); grouped = df.groupby('Category');``` What will be the output of ```grouped.size()```?",
+      "code_snippet": "import pandas as pd\n\ndf = pd.DataFrame({'Category': ['A', 'B', 'A', 'B'], 'Value': [10, 20, 30, 40]})\ngrouped = df.groupby('Category')\nprint(grouped.size())",
+      "options": [
+        "```Category\nA    1\nB    1\ndtype: int64```",
+        "```Category\nA    2\nB    2\ndtype: int64```",
+        "```Category\nA    3\nB    3\ndtype: int64```",
+        "```Category\nA    4\nB    4\ndtype: int64```"
+      ],
+      "correct_answer": "```Category\nA    2\nB    2\ndtype: int64```",
+      "explanation": "The correct answer is the output where 'A' has a count of 2 and 'B' has a count of 2 because there are 2 rows for each category in the DataFrame. The other options do not correctly count the number of rows for each category."
+    },
+    {
+      "question_text": "What is the difference between 'groupby' and 'pivot_table' in Pandas?",
+      "code_snippet": null,
+      "options": [
+        "'groupby' is used for aggregation, 'pivot_table' is used for data transformation",
+        "'groupby' is used for data transformation, 'pivot_table' is used for aggregation",
+        "'groupby' is used for handling missing data, 'pivot_table' is used for merging datasets",
+        "'groupby' is used for time series analysis, 'pivot_table' is used for filtering data"
+      ],
+      "correct_answer": "'groupby' is used for aggregation, 'pivot_table' is used for data transformation",
+      "explanation": "The correct answer is ''groupby' is used for aggregation, 'pivot_table' is used for data transformation' because 'groupby' is primarily used for grouping data and applying aggregate functions, while 'pivot_table' is used to transform data from a long format to a wide format. The other options are not accurate descriptions of the difference between 'groupby' and 'pivot_table'."
+    },
+    {
+      "question_text": "Consider the following code: ```import pandas as pd; df = pd.DataFrame({'Category': ['A', 'B', 'A', 'B'], 'Value': [10, 20, 30, 40]}); grouped = df.groupby('Category');``` What will be the output of ```grouped.mean()```?",
+      "code_snippet": "import pandas as pd\n\ndf = pd.DataFrame({'Category': ['A', 'B', 'A', 'B'], 'Value': [10, 20, 30, 40]})\ngrouped = df.groupby('Category')\nprint(grouped.mean())",
+      "options": [
+        "```Category\nA    20.0\nB    30.0\nName: Value, dtype: float64```",
+        "```Category\nA    10.0\nB    20.0\nName: Value, dtype: float64```",
+        "```Category\nA    30.0\nB    40.0\nName: Value, dtype: float64```",
+        "```Category\nA    40.0\nB    50.0\nName: Value, dtype: float64```"
+      ],
+      "correct_answer": "```Category\nA    20.0\nB    30.0\nName: Value, dtype: float64```",
+      "explanation": "The correct answer is the output where 'A' has a mean of 20.0 (the average of 10 and 30) and 'B' has a mean of 30.0 (the average of 20 and 40). The other options do not correctly calculate the mean of the 'Value' column for each category."
+    },
+    {
+      "question_text": "What will happen if you try to use the 'Groupby' function on a DataFrame with no categorical columns?",
+      "code_snippet": null,
+      "options": [
+        "It will throw an error because 'Groupby' requires a categorical column",
+        "It will return a Groupby object with the index of the DataFrame as the group key",
+        "It will return a Groupby object with all rows in a single group",
+        "It will return an empty DataFrame"
+      ],
+      "correct_answer": "It will return a Groupby object with all rows in a single group",
+      "explanation": "The correct answer is 'It will return a Groupby object with all rows in a single group' because if you use 'Groupby' on a DataFrame with no categorical columns, it will group all rows into a single group. The other options are not correct."
+    },
+    {
+      "question_text": "Consider the following code: ```import pandas as pd; df = pd.DataFrame({'Category': ['A', 'B', 'A', 'B'], 'Value': [10, 20, 30, 40]}); grouped = df.groupby('Category');``` What will be the output of ```grouped.count()```?",
+      "code_snippet": "import pandas as pd\n\ndf = pd.DataFrame({'Category': ['A', 'B', 'A', 'B'], 'Value': [10, 20, 30, 40]})\ngrouped = df.groupby('Category')\nprint(grouped.count())",
+      "options": [
+        "```Category\nA    1\nB    1\nName: Value, dtype: int64```",
+        "```Category\nA    2\nB    2\nName: Value, dtype: int64```",
+        "```Category\nA    3\nB    3\nName: Value, dtype: int64```",
+        "```Category\nA    4\nB    4\nName: Value, dtype: int64```"
+      ],
+      "correct_answer": "```Category\nA    2\nB    2\nName: Value, dtype: int64```",
+      "explanation": "The correct answer is the output where 'A' has a count of 2 and 'B' has a count of 2 because there are 2 rows for each category in the DataFrame. The other options do not correctly count the number of rows for each category."
+    }
+  ]
+}
