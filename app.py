@@ -4,9 +4,7 @@ import json
 import uuid
 from pathlib import Path
 from dotenv import load_dotenv
-from groq import Groq
 from pydantic import BaseModel
-import ast
 import gspread
 from google.oauth2.service_account import Credentials
 
@@ -18,20 +16,21 @@ class QuestionModel(BaseModel):
     question_text: str
     code_snippet: str | None = None
     options: list[str]
-    correct_answer: str
-    explanation: str
+    correct_answer: str | None = None  # Plain text answer (Teacher Only)
+    explanation: str | None = None     # Explanation (Teacher Only)
+    answer_hash: str | None = None     # SHA256 Hash of correct answer (Public)
 
 class QuizModel(BaseModel):
     questions: list[QuestionModel]
 
 # --- Google Sheets Configuration ---
-# You can use the name OR the ID (from the URL)
-SPREADSHEET_NAME = "DSE Results"
-SPREADSHEET_ID = "19jrchXDdR-6RUevaAt1Vvwy8_3bT6WIb42UT5RkywrU" # Paste your sheet ID here (the long string in the browser URL)
+# Set these in your online Streamlit Cloud "Secrets" panel!
+SPREADSHEET_NAME = os.getenv("SPREADSHEET_NAME", "DSE Results")
+SPREADSHEET_ID = os.getenv("SPREADSHEET_ID", "") # LEAVE EMPTY - Set in Secrets
 CREDENTIALS_FILE = "google_credentials.json"
 
 def get_gspread_client():
-    """Authenticates and returns a gspread client."""
+    """Authenticates and returns a gspread client with verbose error reporting."""
     scope = ['https://www.googleapis.com/auth/spreadsheets', 'https://www.googleapis.com/auth/drive']
     
     try:
@@ -42,18 +41,24 @@ def get_gspread_client():
                 creds_info = json.load(f)
                 st.session_state.service_account_email = creds_info.get("client_email")
             creds = Credentials.from_service_account_file(str(local_creds.absolute()), scopes=scope)
+            return gspread.authorize(creds)
         
         # 2. Then check for service account JSON in Streamlit secrets (for deployment)
         elif "GOOGLE_CREDENTIALS" in st.secrets:
-            creds_dict = json.loads(st.secrets["GOOGLE_CREDENTIALS"])
+            creds_json = st.secrets["GOOGLE_CREDENTIALS"]
+            # Handle both string and dict secrets
+            creds_dict = json.loads(creds_json) if isinstance(creds_json, str) else creds_json
             st.session_state.service_account_email = creds_dict.get("client_email")
             creds = Credentials.from_service_account_info(creds_dict, scopes=scope)
+            return gspread.authorize(creds)
             
         else:
+            st.warning("⚠️ **Google Sheets Credentials Missing!**")
+            st.info("Please add `GOOGLE_CREDENTIALS` to your Streamlit Cloud Secrets (for online use) or provide `google_credentials.json` (for local use).")
             return None
             
-        return gspread.authorize(creds)
     except Exception as e:
+        st.error(f"❌ **Google Auth Error**: {e}")
         return None
 
 def init_quiz_worksheet(quiz_id, title):
@@ -121,86 +126,6 @@ def submit_result_to_gsheet(quiz_id, name, roll, score, total, sheet_title):
         return False
 
 
-def sync_to_github(quiz_title):
-    """Automatically adds, commits, and pushes the new quiz to GitHub."""
-    import subprocess
-    try:
-        # Check if we are in a git repo
-        if not Path(".git").exists():
-            return False, "Not a git repository. Please initialize git first."
-            
-        # 1. Add changes
-        subprocess.run(["git", "add", "."], check=True)
-        
-        # 2. Commit
-        commit_msg = f"Auto-sync: Added {quiz_title}"
-        subprocess.run(["git", "commit", "-m", commit_msg], check=True)
-        
-        # 3. Push
-        subprocess.run(["git", "push"], check=True)
-        
-        return True, "Successfully synced with GitHub!"
-    except subprocess.CalledProcessError as e:
-        return False, f"Git command failed. Ensure you are logged in and have push permissions. Error: {e}"
-    except Exception as e:
-        return False, f"Sync error: {e}"
-
-def generate_quiz(topic: str, api_key: str):
-    """Generates a 10-question quiz using Groq (Llama 3.1)."""
-    try:
-        # Initialize the Groq client
-        client = Groq(api_key=api_key)
-    except Exception as e:
-        st.error(f"Failed to initialize Groq Client. Check API Key. Error: {e}")
-        return None
-
-    prompt = f"""
-    Create a 10-question multiple-choice quiz about: Python Data Analysis and Visualization, specifically focusing on the topic: '{topic}'.
-    
-    Requirements:
-    - Exactly 10 questions.
-    - Questions should be a mix of: Code-based, Output-based, and Error-based.
-    - Each question must have exactly 4 options.
-    - One correct answer clearly identified.
-    - A brief explanation of why the correct answer is right and others are wrong.
-    - If a question is code or output-based, put the code in the 'code_snippet' field (otherwise leave it null).
-    - IMPORTANT: If a question or an option contains a Pandas DataFrame output or tabular data, you MUST wrap it in Markdown code blocks (e.g., ```text\\nDataFrame content\\n```) to preserve the two-dimensional row-by-row structure. Do NOT flatten tabular data into one line.
-    
-    You MUST return the output in a JSON format that strictly matches this schema:
-    {{
-      "questions": [
-        {{
-          "question_text": "string",
-          "code_snippet": "string or null",
-          "options": ["string", "string", "string", "string"],
-          "correct_answer": "string (must match one of the options exactly)",
-          "explanation": "string"
-        }}
-      ]
-    }}
-    """
-
-    try:
-        completion = client.chat.completions.create(
-            model="llama-3.3-70b-versatile",
-            messages=[
-                {"role": "system", "content": "You are a specialized quiz generator for Python Data Analysis. You always respond with valid JSON."},
-                {"role": "user", "content": prompt}
-            ],
-            response_format={"type": "json_object"}
-        )
-        
-        content = completion.choices[0].message.content
-        if content:
-             quiz_data = QuizModel.model_validate_json(content)
-             return quiz_data.questions
-        else:
-             st.error("Empty response received from Groq.")
-             return None
-
-    except Exception as e:
-        st.error(f"Error generating quiz from Groq: {e}")
-        return None
 
 # --- Student UI ---
 st.set_page_config(page_title="Student Quiz Portal", page_icon="📝", layout="wide")
@@ -224,21 +149,45 @@ if "submitted" not in st.session_state:
 if "result_submitted" not in st.session_state:
     st.session_state.result_submitted = False
 
-if quiz_id_param and not st.session_state.get("quiz_loaded"):
-    quiz_file = QUIZZES_DIR / f"{quiz_id_param}.json"
+# --- GitHub Configuration ---
+GITHUB_USER_REPO = os.getenv("GITHUB_REPO", "") # Set this in Streamlit Secrets
+
+def load_quiz_file(quiz_id):
+    """Loads quiz from local file or falls back to GitHub URL."""
+    quiz_file = QUIZZES_DIR / f"{quiz_id}.json"
+    
+    # 1. Try local file (works if pushed to repo)
     if quiz_file.exists():
         with open(quiz_file, "r", encoding="utf-8") as f:
-            quiz_data = json.load(f)
-            st.session_state.quiz_questions = [QuestionModel(**q) for q in quiz_data.get("questions", [])]
-            st.session_state.quiz_access_code = quiz_data.get("access_code")
-            st.session_state.quiz_title = quiz_data.get("title", "Python Quiz")
-            st.session_state.quiz_id = quiz_id_param
-            st.session_state.quiz_loaded = True
-            st.session_state.authentication_passed = False
-            st.session_state.submitted = False
-            st.session_state.result_submitted = False
+            return json.load(f)
+            
+    # 2. Try GitHub Raw URL (works immediately after upload)
+    try:
+        import httpx
+        # Use the raw link to fetch the JSON
+        github_url = f"https://raw.githubusercontent.com/{GITHUB_USER_REPO}/main/quizzes/{quiz_id}.json"
+        response = httpx.get(github_url)
+        if response.status_code == 200:
+            return response.json()
+    except Exception as e:
+        st.error(f"Failed to fetch quiz from GitHub: {e}")
+        
+    return None
+
+if quiz_id_param and not st.session_state.get("quiz_loaded"):
+    quiz_data = load_quiz_file(quiz_id_param)
+    if quiz_data:
+        st.session_state.quiz_questions = [QuestionModel(**q) for q in quiz_data.get("questions", [])]
+        st.session_state.quiz_access_code = quiz_data.get("access_code")
+        st.session_state.quiz_title = quiz_data.get("title", "Python Quiz")
+        st.session_state.quiz_id = quiz_id_param
+        st.session_state.quiz_loaded = True
+        st.session_state.authentication_passed = False
+        st.session_state.submitted = False
+        st.session_state.result_submitted = False
     else:
-        st.error("Quiz not found. Please check the link provided by your teacher.")
+        st.error("🔍 **Quiz Not Found!**")
+        st.info("The quiz might still be uploading to GitHub. Please wait 10 seconds and refresh this page.")
 
 # Main Portal Content
 if not st.session_state.get("quiz_loaded", False):
@@ -291,12 +240,34 @@ if st.session_state.quiz_questions:
 if st.session_state.submitted and st.session_state.quiz_questions:
     st.header("Results")
     score = 0
+    import hashlib
+    def get_hash(text):
+        return hashlib.sha256(text.encode()).hexdigest()
+
     for idx, q in enumerate(st.session_state.quiz_questions):
         user_ans = st.session_state[f"q_{idx}"]
-        if user_ans == q.correct_answer:
+        
+        # Discover correct answer text from hash (Privacy Mode)
+        correct_ans_text = q.correct_answer
+        if not correct_ans_text and q.answer_hash:
+            for opt in q.options:
+                if get_hash(opt) == q.answer_hash:
+                    correct_ans_text = opt
+                    break
+
+        is_correct = (get_hash(user_ans) == q.answer_hash) if q.answer_hash else (user_ans == q.correct_answer)
+            
+        if is_correct:
             score += 1
-    
-    st.metric("Your Score", f"{score} / {len(st.session_state.quiz_questions)}")
+            st.success(f"✅ **Question {idx + 1}: Correct!**")
+        else:
+            st.error(f"❌ **Question {idx + 1}: Incorrect.**")
+            if correct_ans_text:
+                st.write(f"The correct answer was: **{correct_ans_text}**")
+            
+        if q.explanation:
+            st.info(f"**Explanation:** {q.explanation}")
+        st.write("---")
     
     if not st.session_state.get("result_submitted"):
         with st.spinner("Recording score..."):
