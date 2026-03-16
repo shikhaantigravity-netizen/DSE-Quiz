@@ -58,7 +58,15 @@ def get_gspread_client():
         elif "GOOGLE_CREDENTIALS" in st.secrets:
             creds_json = st.secrets["GOOGLE_CREDENTIALS"]
             # Handle both string and dict secrets
-            creds_dict = json.loads(creds_json) if isinstance(creds_json, str) else creds_json
+            if isinstance(creds_json, str):
+                try:
+                    creds_dict = json.loads(creds_json)
+                except json.JSONDecodeError as e:
+                    st.error(f"❌ **Malformed JSON in Secrets**: {e}")
+                    st.info("Ensure your `GOOGLE_CREDENTIALS` secret in Streamlit is a valid JSON. Check for trailing commas or missing brackets.")
+                    return None
+            else:
+                creds_dict = creds_json
             
             # --- FIX: Handle malformed private key (Super Clean) ---
             if "private_key" in creds_dict:
