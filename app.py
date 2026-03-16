@@ -25,8 +25,8 @@ class QuizModel(BaseModel):
 
 # --- Google Sheets Configuration ---
 # Set these in your online Streamlit Cloud "Secrets" panel!
-SPREADSHEET_NAME = os.getenv("SPREADSHEET_NAME", "DSE Results")
-SPREADSHEET_ID_RAW = os.getenv("SPREADSHEET_ID", "") # LEAVE EMPTY - Set in Secrets
+SPREADSHEET_NAME = st.secrets.get("SPREADSHEET_NAME", os.getenv("SPREADSHEET_NAME", "DSE Results"))
+SPREADSHEET_ID_RAW = st.secrets.get("SPREADSHEET_ID", os.getenv("SPREADSHEET_ID", ""))
 CREDENTIALS_FILE = "google_credentials.json"
 
 def get_spreadsheet_id():
@@ -57,20 +57,27 @@ def get_gspread_client():
         # 2. Then check for service account JSON in Streamlit secrets (for deployment)
         elif "GOOGLE_CREDENTIALS" in st.secrets:
             creds_json = st.secrets["GOOGLE_CREDENTIALS"]
-            # Handle both string and dict secrets
-            if isinstance(creds_json, str):
+            
+            # If it's already a dict (Streamlit parsed it automatically), use it
+            if isinstance(creds_json, dict):
+                creds_dict = dict(creds_json) # Create a copy to avoid mutating the original
+            elif isinstance(creds_json, str):
                 try:
-                    creds_dict = json.loads(creds_json)
+                    # Robust cleaning and loading
+                    import re
+                    clean_json = re.sub(r',\s*([\]}])', r'\1', creds_json) # Trailing commas
+                    creds_dict = json.loads(clean_json)
                 except json.JSONDecodeError as e:
-                    st.error(f"❌ **Malformed JSON in Secrets**: {e}")
-                    st.info("Ensure your `GOOGLE_CREDENTIALS` secret in Streamlit is a valid JSON. Check for trailing commas or missing brackets.")
+                    st.error(f"❌ **Secrets JSON Error**: {e}")
+                    st.info("Ensure your `GOOGLE_CREDENTIALS` in Streamlit is a valid JSON. Check for trailing commas or missing brackets.")
                     return None
             else:
-                creds_dict = creds_json
+                st.error(f"❌ **Unexpected type for GOOGLE_CREDENTIALS**: {type(creds_json)}")
+                return None
             
             # --- FIX: Handle malformed private key (Super Clean) ---
             if "private_key" in creds_dict:
-                pk = creds_dict["private_key"]
+                pk = str(creds_dict["private_key"]) # Ensure it's a string
                 # 1. Fix escaped newlines
                 pk = pk.replace("\\n", "\n")
                 # 2. Trim whitespace and stray quotes
