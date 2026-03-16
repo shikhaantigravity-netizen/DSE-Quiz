@@ -1,9 +1,0 @@
-streamlit
-google-genai
-python-dotenv
-pydantic
-gspread
-google-auth
-google-auth-oauthlib
-httpx
-groq
