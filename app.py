@@ -49,9 +49,23 @@ def get_gspread_client():
             # Handle both string and dict secrets
             creds_dict = json.loads(creds_json) if isinstance(creds_json, str) else creds_json
             
-            # --- FIX: Handle malformed private key newlines ---
+            # --- FIX: Handle malformed private key (Super Clean) ---
             if "private_key" in creds_dict:
-                creds_dict["private_key"] = creds_dict["private_key"].replace("\\n", "\n")
+                pk = creds_dict["private_key"]
+                # 1. Fix escaped newlines
+                pk = pk.replace("\\n", "\n")
+                # 2. Trim whitespace and stray quotes
+                pk = pk.strip().strip('"').strip("'")
+                # 3. Fix common accidental underscore issues (e.g., BEGIN_PRIVATE_KEY)
+                pk = pk.replace("BEGIN_PRIVATE_KEY", "BEGIN PRIVATE KEY")
+                pk = pk.replace("END_PRIVATE_KEY", "END PRIVATE KEY")
+                # 4. Ensure it starts with the correct header
+                if not pk.startswith("-----BEGIN"):
+                    pk = "-----BEGIN PRIVATE KEY-----\n" + pk
+                if not pk.endswith("-----"):
+                    pk = pk + "\n-----END PRIVATE KEY-----"
+                
+                creds_dict["private_key"] = pk
                 
             st.session_state.service_account_email = creds_dict.get("client_email")
             creds = Credentials.from_service_account_info(creds_dict, scopes=scope)
