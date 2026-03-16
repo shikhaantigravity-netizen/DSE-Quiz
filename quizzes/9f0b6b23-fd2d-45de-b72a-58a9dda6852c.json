@@ -1,0 +1,126 @@
+{
+  "title": "Pandas Unit 7.2",
+  "access_code": "7Q8UQ2",
+  "questions": [
+    {
+      "question_text": "What is the purpose of the fillna() function in pandas?",
+      "code_snippet": null,
+      "options": [
+        "To drop rows with missing values",
+        "To rename columns in a DataFrame",
+        "To replace missing values with a specified value",
+        "To create a new DataFrame"
+      ],
+      "explanation": "The fillna() function is used to replace missing values in a pandas DataFrame with a specified value, such as a mean, median, or constant value. The other options are incorrect because dropna() is used to drop rows with missing values, rename() is used to rename columns, and creating a new DataFrame is not related to the fillna() function.",
+      "answer_hash": "c8b1ce9292244099a63ea30624b37fe99733278b98cad721b1a373025d6c5fa1"
+    },
+    {
+      "question_text": "What is the output of the following code?",
+      "code_snippet": "import pandas as pd\nimport numpy as np\n\ndata = {'A': [1, 2, np.nan, 4], 'B': [5, np.nan, 7, 8]}\ndf = pd.DataFrame(data)\ndf.fillna(0, inplace=True)\nprint(df)",
+      "options": [
+        "```text\nA    B\n0  1.0  5.0\n1  2.0  0.0\n2  0.0  7.0\n3  4.0  8.0\n```",
+        "```text\nA    B\n0  1.0  0.0\n1  2.0  5.0\n2  0.0  7.0\n3  4.0  8.0\n```",
+        "```text\nA    B\n0  1.0  5.0\n1  2.0  0.0\n2  0.0  7.0\n3  4.0  8.0\n```",
+        "```text\nA    B\n0  0.0  0.0\n1  0.0  0.0\n2  0.0  0.0\n3  0.0  0.0\n```"
+      ],
+      "explanation": "The fillna() function replaces missing values with the specified value (in this case, 0). Therefore, the output will be a DataFrame with the missing values replaced with 0.",
+      "answer_hash": "fd18175d0a31b1c37d0b84fca0daf4cbc6fbc50fdfb1169bcd2ba0c8aaa614da"
+    },
+    {
+      "question_text": "What will happen if you use the dropna() function without specifying any parameters?",
+      "code_snippet": null,
+      "options": [
+        "All rows with missing values will be dropped",
+        "All columns with missing values will be dropped",
+        "Only the first row with missing values will be dropped",
+        "Only the last column with missing values will be dropped"
+      ],
+      "explanation": "By default, the dropna() function drops rows with missing values. If you want to drop columns with missing values, you need to specify the axis parameter as 1.",
+      "answer_hash": "29e3cc8e9533862bf5008c72ecdd3cfee9b4bba7b458f1a00eaaf89281ddbfae"
+    },
+    {
+      "question_text": "What is the purpose of the replace() function in pandas?",
+      "code_snippet": null,
+      "options": [
+        "To replace missing values with a specified value",
+        "To rename columns in a DataFrame",
+        "To replace specified values with other values",
+        "To create a new DataFrame"
+      ],
+      "explanation": "The replace() function is used to replace specified values with other values in a pandas DataFrame. The other options are incorrect because fillna() is used to replace missing values, rename() is used to rename columns, and creating a new DataFrame is not related to the replace() function.",
+      "answer_hash": "355604d9ad9b02990b2f3cb17fd713069c2b8d5257644a54dbbf0d078134b7a1"
+    },
+    {
+      "question_text": "What will be the output of the following code?",
+      "code_snippet": "import pandas as pd\n\ndata = {'A': [1, 2, 3, 4], 'B': [5, 6, 7, 8]}\ndf = pd.DataFrame(data)\ndf = df.rename(columns={'A': 'X', 'B': 'Y'})\nprint(df)",
+      "options": [
+        "```text\nA    B\n0  1  5\n1  2  6\n2  3  7\n3  4  8\n```",
+        "```text\nX    Y\n0  1  5\n1  2  6\n2  3  7\n3  4  8\n```",
+        "```text\nA    Y\n0  1  5\n1  2  6\n2  3  7\n3  4  8\n```",
+        "```text\nX    B\n0  1  5\n1  2  6\n2  3  7\n3  4  8\n```"
+      ],
+      "explanation": "The rename() function is used to rename columns in a pandas DataFrame. In this case, columns 'A' and 'B' are renamed to 'X' and 'Y' respectively.",
+      "answer_hash": "3e0d5588cdc2a339f74b13f07da4f6788306cb8af516d1c5a4c499973efaeb95"
+    },
+    {
+      "question_text": "What will happen if you use the replace() function with a regex pattern?",
+      "code_snippet": null,
+      "options": [
+        "It will replace all occurrences of the pattern in the DataFrame",
+        "It will replace only the first occurrence of the pattern in the DataFrame",
+        "It will throw an error because regex is not supported",
+        "It will create a new DataFrame with the replaced values"
+      ],
+      "explanation": "The replace() function in pandas supports regex patterns. When used with a regex pattern, it will replace all occurrences of the pattern in the DataFrame.",
+      "answer_hash": "96ffe0a48dae10b9687679cafe3ee2765c8da53ec919eb22a6b58344c199df0e"
+    },
+    {
+      "question_text": "What is the difference between the dropna() and fillna() functions?",
+      "code_snippet": null,
+      "options": [
+        "dropna() replaces missing values, while fillna() drops rows with missing values",
+        "dropna() drops rows with missing values, while fillna() replaces missing values",
+        "dropna() creates a new DataFrame, while fillna() renames columns",
+        "dropna() renames columns, while fillna() creates a new DataFrame"
+      ],
+      "explanation": "The dropna() function is used to drop rows or columns with missing values, while the fillna() function is used to replace missing values with a specified value.",
+      "answer_hash": "69466e834f5732decd5ed881ea89f159862ed0ec701353bbb217157a22e29ff1"
+    },
+    {
+      "question_text": "What will happen if you use the rename() function with a dictionary?",
+      "code_snippet": null,
+      "options": [
+        "It will rename only the first column specified in the dictionary",
+        "It will rename all columns specified in the dictionary",
+        "It will throw an error because dictionaries are not supported",
+        "It will create a new DataFrame with the renamed columns"
+      ],
+      "explanation": "The rename() function in pandas supports dictionaries. When used with a dictionary, it will rename all columns specified in the dictionary.",
+      "answer_hash": "90edcd92980b91325df2dba02b27ffa84ae0ffd637d295def1991e6668f5001e"
+    },
+    {
+      "question_text": "What will be the output of the following code?",
+      "code_snippet": "import pandas as pd\nimport numpy as np\n\ndata = {'A': [1, 2, np.nan, 4], 'B': [5, np.nan, 7, 8]}\ndf = pd.DataFrame(data)\ndf = df.dropna(axis=1)\nprint(df)",
+      "options": [
+        "```text\nA    B\n0  1.0  5.0\n1  2.0  6.0\n2  3.0  7.0\n3  4.0  8.0\n```",
+        "```text\nA    B\n0  1.0  5.0\n1  2.0  NaN\n2  NaN  7.0\n3  4.0  8.0\n```",
+        "```text\nEmpty DataFrame\nColumns: []\nIndex: [0, 1, 2, 3]\n```",
+        "```text\nA    B\n0  1.0  5.0\n1  2.0  6.0\n2  3.0  7.0\n3  4.0  8.0\n```"
+      ],
+      "explanation": "The dropna() function with axis=1 drops columns with missing values. Since both columns 'A' and 'B' have missing values, they will be dropped, resulting in an empty DataFrame.",
+      "answer_hash": "4ab5ee3aec5877877cd8ea3e39f9016804ded380a311aaf2e88b7f07c6fc76a5"
+    },
+    {
+      "question_text": "What is the purpose of the axis parameter in the dropna() function?",
+      "code_snippet": null,
+      "options": [
+        "To specify the number of rows to drop",
+        "To specify the number of columns to drop",
+        "To specify the axis along which to drop (0 for rows, 1 for columns)",
+        "To specify the value to replace missing values with"
+      ],
+      "explanation": "The axis parameter in the dropna() function is used to specify the axis along which to drop (0 for rows, 1 for columns). If not specified, the default is 0, which means rows with missing values will be dropped.",
+      "answer_hash": "942d476edb926032f93ef1bcbd1550705b13c14dd7f2b6cfbc686a2e5749f2dd"
+    }
+  ]
+}
