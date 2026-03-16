@@ -1,0 +1,126 @@
+{
+  "title": "Unit 11",
+  "access_code": "3V1TS2",
+  "questions": [
+    {
+      "question_text": "What is the primary function of the 'fillna' method in pandas?",
+      "code_snippet": null,
+      "options": [
+        "To drop missing values",
+        "To fill missing values",
+        "To create missing values",
+        "To modify existing values"
+      ],
+      "explanation": "The 'fillna' method is used to fill missing or NaN values in a DataFrame. It replaces missing values with a specified value, which can be a scalar, a list, or another DataFrame.",
+      "answer_hash": "e3b8c7e2343d30bec0afe96b02cbff87c274b6e6cb37a6b13dd02f1ae8974fd8"
+    },
+    {
+      "question_text": "What will be the output of the following code?",
+      "code_snippet": "import pandas as pd\nimport numpy as np\n\ndf = pd.DataFrame({'A': [1, 2, np.nan, 4]})\ndf.fillna(0, inplace=True)\nprint(df)",
+      "options": [
+        "```text\nA\n0    1.0\n1    2.0\n2    0.0\n3    4.0\n```",
+        "```text\nA\n0    1.0\n1    2.0\n2    1.0\n3    4.0\n```",
+        "```text\nA\n0    1.0\n1    2.0\n2    NaN\n3    4.0\n```",
+        "```text\nA\n0    1.0\n1    2.0\n2    4.0\n3    0.0\n```"
+      ],
+      "explanation": "The 'fillna' method replaces the NaN value in the 'A' column with 0.",
+      "answer_hash": "81bf62bba36909e21e45d0c30c2162c6e841bb1f21cd1a8fb2af910996726e4b"
+    },
+    {
+      "question_text": "What will happen if you try to fill missing values with a non-numeric value in a numeric column?",
+      "code_snippet": null,
+      "options": [
+        "The missing values will be filled with the specified value",
+        "An error will occur",
+        "The column will be converted to object type",
+        "The missing values will remain unchanged"
+      ],
+      "explanation": "If you try to fill missing values with a non-numeric value in a numeric column, an error will occur because the non-numeric value cannot be broadcasted to the numeric column.",
+      "answer_hash": "931923e86bdef0ebeaa28a0f8a12571ab5faaf0053d2de9fec3c97eb21bb69a1"
+    },
+    {
+      "question_text": "What is the purpose of the 'inplace' parameter in the 'fillna' method?",
+      "code_snippet": null,
+      "options": [
+        "To specify the value to fill missing values",
+        "To specify the column to fill missing values",
+        "To modify the original DataFrame",
+        "To return a new DataFrame"
+      ],
+      "explanation": "The 'inplace' parameter is used to specify whether the 'fillna' method should modify the original DataFrame or return a new DataFrame. If 'inplace=True', the original DataFrame will be modified.",
+      "answer_hash": "6de99b7833aebac0ffb7c1c0cb1d7cabde2ff8f91ebd972570d63085ae5c3340"
+    },
+    {
+      "question_text": "What will be the output of the following code?",
+      "code_snippet": "import pandas as pd\nimport numpy as np\n\ndf = pd.DataFrame({'A': [1, 2, np.nan, 4], 'B': [np.nan, 2, 3, 4]})\ndf.fillna({'A': 0, 'B': 1}, inplace=True)\nprint(df)",
+      "options": [
+        "```text\n   A    B\n0  1.0  1.0\n1  2.0  2.0\n2  0.0  3.0\n3  4.0  4.0\n```",
+        "```text\n   A    B\n0  1.0  1.0\n1  2.0  2.0\n2  0.0  3.0\n3  4.0  5.0\n```",
+        "```text\n   A    B\n0  1.0  2.0\n1  2.0  2.0\n2  3.0  3.0\n3  4.0  4.0\n```",
+        "```text\n   A    B\n0  0.0  1.0\n1  2.0  2.0\n2  0.0  3.0\n3  4.0  4.0\n```"
+      ],
+      "explanation": "The 'fillna' method replaces the NaN values in the 'A' and 'B' columns with 0 and 1, respectively.",
+      "answer_hash": "97b075808a12679b21638695b538ab8d7c4e6432b981be9d49180666ef01e9f4"
+    },
+    {
+      "question_text": "What is the difference between 'fillna' and 'dropna' methods?",
+      "code_snippet": null,
+      "options": [
+        "'fillna' is used to drop missing values, while 'dropna' is used to fill missing values'",
+        "'fillna' is used to fill missing values, while 'dropna' is used to drop missing values'",
+        "'fillna' is used to create missing values, while 'dropna' is used to modify existing values'",
+        "'fillna' is used to modify existing values, while 'dropna' is used to create missing values'"
+      ],
+      "explanation": "'fillna' is used to fill missing or NaN values in a DataFrame, while 'dropna' is used to drop rows or columns that contain missing or NaN values.",
+      "answer_hash": "3f18499f66d495e087befc9e1a15f5062f26d519d0025cf33e9556467ce93e2a"
+    },
+    {
+      "question_text": "What will happen if you try to fill missing values with a list of values?",
+      "code_snippet": null,
+      "options": [
+        "The missing values will be filled with the specified list of values",
+        "An error will occur",
+        "The list of values will be broadcasted to the column",
+        "The missing values will remain unchanged"
+      ],
+      "explanation": "If you try to fill missing values with a list of values, the list will be broadcasted to the column. The length of the list must match the number of missing values.",
+      "answer_hash": "26420fa7f282409fe9e54e945ae4e60462dea94d6eb36898714f6c0262abcf04"
+    },
+    {
+      "question_text": "What is the purpose of the 'limit' parameter in the 'fillna' method?",
+      "code_snippet": null,
+      "options": [
+        "To specify the number of missing values to fill",
+        "To specify the column to fill missing values",
+        "To specify the value to fill missing values",
+        "To specify the maximum number of consecutive missing values to fill"
+      ],
+      "explanation": "The 'limit' parameter is used to specify the maximum number of consecutive missing values to fill. If 'limit=n', only the first 'n' consecutive missing values will be filled.",
+      "answer_hash": "b98574c59481abbd87317c4f22ed4d3c0ffe586e8f2106cd0ef7567d605c2cdc"
+    },
+    {
+      "question_text": "What will be the output of the following code?",
+      "code_snippet": "import pandas as pd\nimport numpy as np\n\ndf = pd.DataFrame({'A': [1, 2, np.nan, np.nan, 4]})\ndf.fillna(method='ffill', limit=1, inplace=True)\nprint(df)",
+      "options": [
+        "```text\n   A\n0  1.0\n1  2.0\n2  2.0\n3  NaN\n4  4.0\n```",
+        "```text\n   A\n0  1.0\n1  2.0\n2  2.0\n3  2.0\n4  4.0\n```",
+        "```text\n   A\n0  1.0\n1  2.0\n2  NaN\n3  NaN\n4  4.0\n```",
+        "```text\n   A\n0  1.0\n1  2.0\n2  2.0\n3  4.0\n4  4.0\n```"
+      ],
+      "explanation": "The 'fillna' method fills the first missing value with the previous value (2.0), but does not fill the second missing value because 'limit=1'.",
+      "answer_hash": "89e89615ef0781a5cf32bbe76871695af21d87fd4a9ec2d62ffbb69bcc64c7d6"
+    },
+    {
+      "question_text": "What will happen if you try to fill missing values with a non-numeric value in a numeric column using the 'downcast' parameter?",
+      "code_snippet": null,
+      "options": [
+        "The missing values will be filled with the specified value",
+        "An error will occur",
+        "The column will be converted to object type",
+        "The missing values will remain unchanged"
+      ],
+      "explanation": "If you try to fill missing values with a non-numeric value in a numeric column using the 'downcast' parameter, an error will occur because the non-numeric value cannot be broadcasted to the numeric column.",
+      "answer_hash": "931923e86bdef0ebeaa28a0f8a12571ab5faaf0053d2de9fec3c97eb21bb69a1"
+    }
+  ]
+}
