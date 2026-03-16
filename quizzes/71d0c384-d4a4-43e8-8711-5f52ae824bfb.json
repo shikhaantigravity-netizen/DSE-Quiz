@@ -1,0 +1,126 @@
+{
+  "title": "Unit A",
+  "access_code": "TNYDK7",
+  "questions": [
+    {
+      "question_text": "What is the primary function of the 'fillna' method in Pandas?",
+      "code_snippet": null,
+      "options": [
+        "To drop missing values",
+        "To fill missing values",
+        "To create new DataFrame",
+        "To merge DataFrames"
+      ],
+      "explanation": "The 'fillna' method in Pandas is used to fill missing or NaN values in a DataFrame. It provides a way to replace these missing values with a specified value, such as a mean, median, or a specific constant.",
+      "answer_hash": "e3b8c7e2343d30bec0afe96b02cbff87c274b6e6cb37a6b13dd02f1ae8974fd8"
+    },
+    {
+      "question_text": "What is the output of the following code snippet?",
+      "code_snippet": "import pandas as pd\nimport numpy as np\ndf = pd.DataFrame({'A': [1, 2, np.nan, 4], 'B': [5, np.nan, 7, 8]})\ndf.fillna(0)",
+      "options": [
+        "```markdown\ntable\n----\n|   A |   B |\n|----:|----:|\n|   1 |   5 |\n|   2 |   0 |\n|   0 |   7 |\n|   4 |   8 |\n```",
+        "```markdown\ntable\n----\n|   A |   B |\n|----:|----:|\n|   1 |   5 |\n|   2 |   0 |\n|   0 |   7 |\n|   4 |   8 |\n``` with mean of column A and B",
+        "```markdown\ntable\n----\n|   A |   B |\n|----:|----:|\n|   1 |   5 |\n|   2 |   0 |\n|   0 |   7 |\n|   4 |   8 |\n``` with interpolation method",
+        "```markdown\ntable\n----\n|   A |   B |\n|----:|----:|\n|   1 |   5 |\n|   2 |   0 |\n|   0 |   7 |\n|   4 |   8 |\n```"
+      ],
+      "explanation": "The 'fillna' method fills the missing values with the specified value. In this case, it fills the missing values with 0.",
+      "answer_hash": "12d74300db939ce63f701a07d33388706c0dd81964a01b2b99cd6c8c8cc33afd"
+    },
+    {
+      "question_text": "What error will occur if the 'fillna' method is called on a non-DataFrame object?",
+      "code_snippet": null,
+      "options": [
+        "AttributeError",
+        "TypeError",
+        "ValueError",
+        "KeyError"
+      ],
+      "explanation": "The 'fillna' method is a DataFrame method. If it is called on a non-DataFrame object, an AttributeError will occur because the object does not have a 'fillna' attribute.",
+      "answer_hash": "d06053434a622e709187802ef07def4b52e05839f37a8f5f9056d5c050fa63a1"
+    },
+    {
+      "question_text": "What is the difference between 'fillna' and 'dropna' methods?",
+      "code_snippet": null,
+      "options": [
+        "'fillna' drops missing values, 'dropna' fills missing values",
+        "'fillna' fills missing values, 'dropna' drops missing values",
+        "'fillna' and 'dropna' both fill missing values",
+        "'fillna' and 'dropna' both drop missing values"
+      ],
+      "explanation": "'fillna' is used to fill missing values with a specified value, while 'dropna' is used to drop rows or columns that contain missing values.",
+      "answer_hash": "716a0c58d0d1e21dd264845cd79c22bc17b58f605d1c1dce16e663b17623cb86"
+    },
+    {
+      "question_text": "What is the output of the following code snippet?",
+      "code_snippet": "import pandas as pd\nimport numpy as np\ndf = pd.DataFrame({'A': [1, 2, np.nan, 4], 'B': [5, np.nan, 7, 8]})\ndf.fillna(df.mean())",
+      "options": [
+        "```markdown\ntable\n----\n|   A |   B |\n|----:|----:|\n|   1 |   5 |\n|   2 |   5 |\n|   2 |   7 |\n|   4 |   8 |\n```",
+        "```markdown\ntable\n----\n|   A |   B |\n|----:|----:|\n|   1 |   5 |\n|   2 |   6.5 |\n|   2.33333 |   7 |\n|   4 |   8 |\n```",
+        "```markdown\ntable\n----\n|   A |   B |\n|----:|----:|\n|   1 |   5 |\n|   2 |   6.5 |\n|   2.33333 |   6.5 |\n|   4 |   8 |\n```",
+        "```markdown\ntable\n----\n|   A |   B |\n|----:|----:|\n|   1 |   5 |\n|   2 |   0 |\n|   0 |   7 |\n|   4 |   8 |\n```"
+      ],
+      "explanation": "'fillna' fills the missing values with the mean of each column. The mean of column 'A' is (1 + 2 + 4) / 3 = 2.33333, and the mean of column 'B' is (5 + 7 + 8) / 3 = 6.66667, however it fills values using np.nanmean so it actually uses (5 + 7 + 8)/3 = (20)/3 = 6.6667, for column B it fills np.nan with this mean, for column 'A' np.nan is filled with (1+2+4)/3 = 7/3 = 2.33333",
+      "answer_hash": "532458d96b9be12270aa7e51b51a8ab8834a18ccff9272a19aa13e121b18ca15"
+    },
+    {
+      "question_text": "What will happen if the 'fillna' method is called with an invalid value?",
+      "code_snippet": null,
+      "options": [
+        "It will fill the missing values with the specified value",
+        "It will raise a TypeError",
+        "It will raise a ValueError",
+        "It will do nothing"
+      ],
+      "explanation": "If the 'fillna' method is called with an invalid value, such as a list or a dictionary, it will raise a TypeError because these types are not supported.",
+      "answer_hash": "306087af314f5c45066005b9232e65cf3b714a1a2d5ab107d668e7c68da22e4c"
+    },
+    {
+      "question_text": "What is the purpose of the 'inplace' parameter in the 'fillna' method?",
+      "code_snippet": null,
+      "options": [
+        "To specify the value to fill the missing values",
+        "To specify whether to fill the missing values in place",
+        "To specify the columns to fill",
+        "To specify the rows to fill"
+      ],
+      "explanation": "The 'inplace' parameter is a boolean value that specifies whether to fill the missing values in place, meaning it modifies the original DataFrame, or to return a new DataFrame with the filled values.",
+      "answer_hash": "690a1cdf9652c2b6b9ea2c63edd0a75b570c94d2966a8e08ea437fab5b82e781"
+    },
+    {
+      "question_text": "What will happen if the 'fillna' method is called on a DataFrame with no missing values?",
+      "code_snippet": null,
+      "options": [
+        "It will raise an error",
+        "It will do nothing",
+        "It will fill all values with the specified value",
+        "It will return a new DataFrame with the same values"
+      ],
+      "explanation": "If the 'fillna' method is called on a DataFrame with no missing values, it will not change the DataFrame because there are no missing values to fill.",
+      "answer_hash": "ea78233415bacdab587ff5aeb0dc0a78c2f2f18c0b159f7a3177a8f51822a4ed"
+    },
+    {
+      "question_text": "What is the difference between 'fillna' and 'interpolate' methods?",
+      "code_snippet": null,
+      "options": [
+        "'fillna' fills missing values with a specified value, 'interpolate' fills missing values with an interpolated value",
+        "'fillna' fills missing values with an interpolated value, 'interpolate' fills missing values with a specified value",
+        "'fillna' and 'interpolate' both fill missing values with a specified value",
+        "'fillna' and 'interpolate' both fill missing values with an interpolated value"
+      ],
+      "explanation": "'fillna' is used to fill missing values with a specified value, while 'interpolate' is used to fill missing values with an interpolated value based on the surrounding values.",
+      "answer_hash": "6118918efd3f5b7824920418297b26300ef664fd512212482aae06aff4467938"
+    },
+    {
+      "question_text": "What error will occur if the 'fillna' method is called with a dictionary that does not match the columns of the DataFrame?",
+      "code_snippet": null,
+      "options": [
+        "TypeError",
+        "ValueError",
+        "KeyError",
+        "AttributeError"
+      ],
+      "explanation": "If the 'fillna' method is called with a dictionary that does not match the columns of the DataFrame, it will raise a ValueError because the dictionary does not provide a valid value for each column.",
+      "answer_hash": "b6276ba72bbc508431b11298180ac724c3eef76599d6862ff5914355b7524739"
+    }
+  ]
+}
