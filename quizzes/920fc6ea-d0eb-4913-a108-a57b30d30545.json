@@ -1,0 +1,126 @@
+{
+  "title": "BA Prog Unit 7 2",
+  "access_code": "LAMT7Z",
+  "questions": [
+    {
+      "question_text": "What is the purpose of the replace() function in Python Data Analysis?",
+      "code_snippet": null,
+      "options": [
+        "To find and replace missing values",
+        "To find and replace specific values in a dataset",
+        "To create a new dataset",
+        "To drop duplicate rows"
+      ],
+      "explanation": "The replace() function is used to find and replace specific values in a dataset. It is commonly used to handle missing or incorrect data. The other options are incorrect because replace() does not specifically target missing values, create new datasets, or drop duplicate rows.",
+      "answer_hash": "fcba9e353e8e0bb40b517013d311040d77e2e2ec9ac49077fea4f5d5d8734e15"
+    },
+    {
+      "question_text": "What is the output of the following code snippet?",
+      "code_snippet": "import pandas as pd\n\ndf = pd.DataFrame({'A': [1, 2, 2, 3, 4, 4, 5]})\ndf['duplicated'] = df.duplicated()\ndf",
+      "options": [
+        "```python\nDataFrame content:\n   A  duplicated\n0  1      False\n1  2       True\n2  2       True\n3  3      False\n4  4       True\n5  4       True\n5  5      False\n```",
+        "```python\nDataFrame content:\n   A  duplicated\n0  1      False\n1  2      False\n2  2       True\n3  3      False\n4  4      False\n5  4       True\n6  5      False\n```",
+        "```python\nDataFrame content:\n   A  duplicated\n0  1      False\n1  2      False\n2  2       True\n3  3      False\n4  4      False\n5  4       True\n6  5      False\n```",
+        "```python\nDataFrame content:\n   A  duplicated\n0  1      False\n1  2      False\n2  2      False\n3  3      False\n4  4      False\n5  4      False\n6  5      False\n```"
+      ],
+      "explanation": "This code snippet creates a DataFrame with a column 'A' containing some duplicate values. The duplicated() function is then used to create a new column 'duplicated' which is True for duplicate rows and False for unique rows. By default, duplicated() considers a row as duplicate if it has the same value as a previous row.",
+      "answer_hash": "afb302f477175406dd84eed16f9ed8d5eee91cdc4b50d2d26a7f702e18be6285"
+    },
+    {
+      "question_text": "What is the purpose of drop_duplicates() function in Python Data Analysis?",
+      "code_snippet": null,
+      "options": [
+        "To create a copy of a dataset",
+        "To find and replace missing values",
+        "To delete duplicate rows from a dataset",
+        "To merge two datasets"
+      ],
+      "explanation": "The drop_duplicates() function is used to delete duplicate rows from a dataset. By default, it considers all columns to determine duplicate rows and keeps the first occurrence of each duplicate row. The other options are incorrect because drop_duplicates() does not create a copy of a dataset, find and replace missing values, or merge datasets.",
+      "answer_hash": "e9f8d93fedeb74942f8ee17cc716b5fee07fab393e17ba327dbc6461bc9da87e"
+    },
+    {
+      "question_text": "What is the output of the following code snippet?",
+      "code_snippet": "import pandas as pd\n\ndf = pd.DataFrame({'A': [1, 2, 2, 3, 4, 4, 5]})\ndf.drop_duplicates()\n",
+      "options": [
+        "```python\nDataFrame content:\n   A\n0  1\n1  2\n2  2\n3  3\n4  4\n5  4\n6  5\n```",
+        "```python\nDataFrame content:\n   A\n0  1\n1  2\n3  3\n4  4\n6  5\n```",
+        "```python\nDataFrame content:\n   A\n0  1\n1  2\n3  3\n4  4\n5  5\n```",
+        "```python\nDataFrame content:\n   A\n0  1\n1  2\n2  2\n3  3\n4  4\n5  5\n```"
+      ],
+      "explanation": "This code snippet creates a DataFrame with a column 'A' containing some duplicate values. The drop_duplicates() function is then used to delete duplicate rows from the DataFrame. By default, it keeps the first occurrence of each duplicate row.",
+      "answer_hash": "625e46c08be0a1626250856bd986bafec8a8361b4aa77a67acda06bbdc9dd95d"
+    },
+    {
+      "question_text": "What is the purpose of the map() function in Python Data Analysis?",
+      "code_snippet": null,
+      "options": [
+        "To create a new column in a DataFrame",
+        "To apply a function to each element of a Series",
+        "To merge two DataFrames",
+        "To group a DataFrame by a column"
+      ],
+      "explanation": "The map() function is used to apply a function to each element of a Series. It is commonly used to transform or manipulate data in a Series. The other options are incorrect because map() does not create a new column in a DataFrame, merge DataFrames, or group a DataFrame by a column.",
+      "answer_hash": "ad29c7a8b86c6142dedf98b93974043b239eaebc9c6a20d4546c10befa71f9e7"
+    },
+    {
+      "question_text": "What will be the output of the following code snippet?",
+      "code_snippet": "import pandas as pd\n\ndf = pd.DataFrame({'A': [1, 2, 2, 3, 4, 4, 5]})\nprint(df['A'].map(lambda x: x*2))\n",
+      "options": [
+        "```python\n0    2\n1    4\n2    4\n3    6\n4    8\n5    8\n6   10\nName: A, dtype: int64\n```",
+        "```python\n0    2\n1    4\n2    4\n3    6\n4    8\n5    8\n6   10\nName: A, dtype: int64\n```",
+        "```python\n0    1\n1    2\n2    2\n3    3\n4    4\n5    4\n6    5\nName: A, dtype: int64\n```",
+        "```python\n0    1\n1    4\n2    4\n3    6\n4    8\n5    8\n6   10\nName: A, dtype: int64\n```"
+      ],
+      "explanation": "This code snippet applies a function to each element of the Series 'A' in the DataFrame, which multiplies each value by 2. The map() function is used to apply this function to each element of the Series.",
+      "answer_hash": "c89eb13fb4b8baf6e55455e2897b984f01c321691defab6c4687605f91c3fd1a"
+    },
+    {
+      "question_text": "What error will occur if you use the replace() function on an empty DataFrame?",
+      "code_snippet": null,
+      "options": [
+        "KeyError",
+        "ValueError",
+        "TypeError",
+        "No error will occur"
+      ],
+      "explanation": "No error will occur if you use the replace() function on an empty DataFrame, because replace() can handle empty DataFrames without any issues.",
+      "answer_hash": "b58f853490e929cd79c63e83a77624d38bfeb0ab1d32975ffa4b2e847361b02f"
+    },
+    {
+      "question_text": "What will be the output of the following code snippet?",
+      "code_snippet": "import pandas as pd\n\ndf = pd.DataFrame({'A': [1, 2, 2, 3, 4, 4, 5]})\ndf = df.drop_duplicates(keep='last')\ndf",
+      "options": [
+        "```python\nDataFrame content:\n   A\n0  1\n2  2\n3  3\n5  4\n6  5\n```",
+        "```python\nDataFrame content:\n   A\n0  1\n1  2\n3  3\n4  4\n6  5\n```",
+        "```python\nDataFrame content:\n   A\n0  1\n2  2\n3  3\n5  4\n6  5\n```",
+        "```python\nDataFrame content:\n   A\n2  2\n3  3\n5  4\n6  5\n```"
+      ],
+      "explanation": "This code snippet drops duplicate rows from the DataFrame, but keeps the last occurrence of each duplicate row. The keep='last' argument is used to specify this behavior.",
+      "answer_hash": "93c65848b553d738439b469a91e3d7f4bec9003f715755af0c5c4a4989482d22"
+    },
+    {
+      "question_text": "What is the difference between duplicated() and drop_duplicates() functions?",
+      "code_snippet": null,
+      "options": [
+        "duplicated() drops duplicate rows, while drop_duplicates() marks duplicate rows",
+        "duplicated() marks duplicate rows, while drop_duplicates() drops duplicate rows",
+        "duplicated() and drop_duplicates() are the same function",
+        "duplicated() is used for DataFrames, while drop_duplicates() is used for Series"
+      ],
+      "explanation": "The duplicated() function is used to mark duplicate rows in a DataFrame, while the drop_duplicates() function is used to drop duplicate rows from a DataFrame. duplicated() returns a boolean Series denoting duplicate rows, while drop_duplicates() returns a new DataFrame with duplicate rows removed.",
+      "answer_hash": "8c73022d0142836444b1f374ac288102548330696d6bf54fae5f4ec04c0a955b"
+    },
+    {
+      "question_text": "What will be the output of the following code snippet?",
+      "code_snippet": "import pandas as pd\n\ndf = pd.DataFrame({'A': [1, 2, 2, 3, 4, 4, 5]})\ndf = df.drop_duplicates(subset='A', keep='first')\ndf",
+      "options": [
+        "```python\nDataFrame content:\n   A\n0  1\n1  2\n3  3\n4  4\n6  5\n```",
+        "```python\nDataFrame content:\n   A\n0  1\n1  2\n3  3\n4  4\n6  5\n```",
+        "```python\nDataFrame content:\n   A\n0  1\n1  2\n3  3\n5  4\n6  5\n```",
+        "```python\nDataFrame content:\n   A\n2  2\n3  3\n5  4\n6  5\n```"
+      ],
+      "explanation": "This code snippet drops duplicate rows from the DataFrame based on the values in column 'A', and keeps the first occurrence of each duplicate row. The subset='A' argument is used to specify the column to consider for duplicate rows, and the keep='first' argument is used to specify the behavior for duplicate rows.",
+      "answer_hash": "625e46c08be0a1626250856bd986bafec8a8361b4aa77a67acda06bbdc9dd95d"
+    }
+  ]
+}
