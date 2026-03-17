@@ -1,0 +1,126 @@
+{
+  "title": "BA Prog Unit 7 .1",
+  "access_code": "FQ391P",
+  "questions": [
+    {
+      "question_text": "What is the purpose of the fillna() function in Pandas?",
+      "code_snippet": null,
+      "options": [
+        "To drop missing values",
+        "To fill missing values",
+        "To create a new DataFrame",
+        "To merge two DataFrames"
+      ],
+      "explanation": "The fillna() function is used to fill missing values in a DataFrame. It replaces missing values with a specified value, which can be a scalar, list, or dictionary.",
+      "answer_hash": "e3b8c7e2343d30bec0afe96b02cbff87c274b6e6cb37a6b13dd02f1ae8974fd8"
+    },
+    {
+      "question_text": "What is the purpose of the dropna() function in Pandas?",
+      "code_snippet": null,
+      "options": [
+        "To fill missing values",
+        "To create a new DataFrame",
+        "To drop missing values",
+        "To merge two DataFrames"
+      ],
+      "explanation": "The dropna() function is used to drop missing values from a DataFrame. It removes rows or columns that contain missing values.",
+      "answer_hash": "b3f1ab44020f71cdd2d79e02e5cd1ad728653ef430ba31643a11e4c8c0b6d800"
+    },
+    {
+      "question_text": "What is the default value of the 'axis' parameter in the dropna() function?",
+      "code_snippet": null,
+      "options": [
+        "0 (rows)",
+        "1 (columns)",
+        "Both 0 and 1",
+        "None"
+      ],
+      "explanation": "The default value of the 'axis' parameter in the dropna() function is 0, which means it drops rows that contain missing values.",
+      "answer_hash": "74532330ace23cb528f103b6525d86e10e5db0d9f4189323bc639fe868b9f4a8"
+    },
+    {
+      "question_text": "What is the purpose of the 'thresh' parameter in the dropna() function?",
+      "code_snippet": null,
+      "options": [
+        "To specify the number of non-missing values required to keep a row or column",
+        "To specify the number of missing values to drop",
+        "To fill missing values",
+        "To create a new DataFrame"
+      ],
+      "explanation": "The 'thresh' parameter in the dropna() function is used to specify the minimum number of non-missing values required to keep a row or column.",
+      "answer_hash": "116bedd5bd0c8b14898737fa89707eac654dc091917c161385243fe1f58cb3a7"
+    },
+    {
+      "question_text": "What will be the output of the following code? ```import pandas as pd\ndf = pd.DataFrame({'A': [1, 2, None, 4], 'B': [5, None, 7, 8]})\ndf.dropna(thresh=2)```",
+      "code_snippet": "import pandas as pd\ndf = pd.DataFrame({'A': [1, 2, None, 4], 'B': [5, None, 7, 8]})\ndf.dropna(thresh=2)",
+      "options": [
+        "```A  B\n0  1.0  5.0\n1  2.0  NaN\n3  4.0  8.0```",
+        "```A    B\n0  1.0  5.0\n1  2.0  NaN\n2  NaN  7.0\n3  4.0  8.0```",
+        "```A    B\n0  1.0  5.0\n3  4.0  8.0```",
+        "No output"
+      ],
+      "explanation": "The thresh parameter is set to 2, which means only rows with at least 2 non-missing values will be kept. Rows with index 1 and 2 are dropped because they have only 1 non-missing value.",
+      "answer_hash": "6eb384dd218ec8e173180ab46ba1da59212a816be47c9258d165cb6b5043d320"
+    },
+    {
+      "question_text": "What will be the output of the following code? ```import pandas as pd\ndf = pd.DataFrame({'A': [1, 2, None, 4], 'B': [5, None, 7, 8]})\ndf.dropna(axis=1)```",
+      "code_snippet": "import pandas as pd\ndf = pd.DataFrame({'A': [1, 2, None, 4], 'B': [5, None, 7, 8]})\ndf.dropna(axis=1)",
+      "options": [
+        "```A  B\n0  1  5\n1  2  None\n2  None  7\n3  4  8```",
+        "```A    B\n0  1.0  5.0\n1  2.0  NaN\n2  NaN  7.0\n3  4.0  8.0```",
+        "```A\n0  1\n1  2\n2  None\n3  4```",
+        "Empty DataFrame"
+      ],
+      "explanation": "The axis parameter is set to 1, which means columns with missing values will be dropped. Column 'B' is dropped because it has missing values.",
+      "answer_hash": "3a9f4d249df2e9966b5528a1c0ad751416577d892ae99f6488f5cdb18f7ae40e"
+    },
+    {
+      "question_text": "What is the purpose of the 'limit' parameter in the fillna() function?",
+      "code_snippet": null,
+      "options": [
+        "To specify the number of non-missing values to fill",
+        "To specify the number of missing values to fill",
+        "To limit the number of consecutive missing values to fill",
+        "To fill all missing values"
+      ],
+      "explanation": "The 'limit' parameter in the fillna() function is used to limit the number of consecutive missing values to fill. It is used with the 'method' parameter to fill missing values.",
+      "answer_hash": "cfe60ec23e08cd6d5f38d429b32f32cca8c95ac1bc2bfd4bb5221f10a5cc3ba3"
+    },
+    {
+      "question_text": "What will be the output of the following code? ```import pandas as pd\ndf = pd.DataFrame({'A': [1, 2, None, None, 5]})\ndf.fillna(method='ffill', limit=1)```",
+      "code_snippet": "import pandas as pd\ndf = pd.DataFrame({'A': [1, 2, None, None, 5]})\ndf.fillna(method='ffill', limit=1)",
+      "options": [
+        "```A\n0  1.0\n1  2.0\n2  2.0\n3  None\n4  5.0```",
+        "```A\n0  1.0\n1  2.0\n2  2.0\n3  2.0\n4  5.0```",
+        "```A\n0  1.0\n1  2.0\n2  None\n3  None\n4  5.0```",
+        "```A\n0  1.0\n1  2.0\n2  2.0\n3  5.0\n4  5.0```"
+      ],
+      "explanation": "The limit parameter is set to 1, which means only the first consecutive missing value will be filled. The second missing value is not filled because the limit is reached.",
+      "answer_hash": "8538661a28a8bde6d1930d6e65ece20562f9e3265ba0e190631c2a8fc9ba77bc"
+    },
+    {
+      "question_text": "What will be the error when running the following code? ```import pandas as pd\ndf = pd.DataFrame({'A': [1, 2, None, 4], 'B': [5, None, 7, 8]})\ndf.dropna(thresh='a')```",
+      "code_snippet": "import pandas as pd\ndf = pd.DataFrame({'A': [1, 2, None, 4], 'B': [5, None, 7, 8]})\ndf.dropna(thresh='a')",
+      "options": [
+        "TypeError: thresh must be an integer",
+        "ValueError: thresh must be an integer",
+        "TypeError: 'str' object cannot be interpreted as an integer",
+        "No error"
+      ],
+      "explanation": "The thresh parameter must be an integer, but a string 'a' is provided, which causes a TypeError.",
+      "answer_hash": "e16f82c63ca04f64b99e3cf0ff481395651bfe3460db2297a71cfa9b40dab804"
+    },
+    {
+      "question_text": "What will be the output of the following code? ```import pandas as pd\ndf = pd.DataFrame({'A': [1, 2, None, 4], 'B': [5, None, 7, 8]})\ndf.fillna(method='ffill', axis=1)```",
+      "code_snippet": "import pandas as pd\ndf = pd.DataFrame({'A': [1, 2, None, 4], 'B': [5, None, 7, 8]})\ndf.fillna(method='ffill', axis=1)",
+      "options": [
+        "```A    B\n0  1.0  5.0\n1  2.0  2.0\n2  None  7.0\n3  4.0  8.0```",
+        "```A    B\n0  1.0  5.0\n1  2.0  None\n2  None  7.0\n3  4.0  8.0```",
+        "```A    B\n0  1.0  5.0\n1  2.0  2.0\n2  2.0  7.0\n3  4.0  8.0```",
+        "```A    B\n0  1.0  5.0\n1  2.0  2.0\n2  None  7.0\n3  4.0  8.0```"
+      ],
+      "explanation": "The method 'ffill' is used to fill missing values with the value from the previous column. The axis parameter is set to 1, which means columns will be used to fill missing values.",
+      "answer_hash": "113451be3c79667560a68119651a8f8f4a337a4ed8867f68e7a00c771e32f7c4"
+    }
+  ]
+}
